@@ -54,4 +54,7 @@ public class Enemy {
         return mEnemyStr;
     }
 
+
+
+
 }

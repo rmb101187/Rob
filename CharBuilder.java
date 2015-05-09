@@ -104,6 +104,8 @@ public class CharBuilder {
 
 
 
+
+
     public void setStr(int str) {
         mStrength = str;
 

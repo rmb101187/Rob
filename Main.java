@@ -4,9 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Enemy enemy = new Enemy();
-        enemy.createList();
-        Combat combat = new Combat();
-        combat.combat();
+        Play playGame = new Play();
+        playGame.Begin();
 }
 }

@@ -13,10 +13,10 @@ public class Combat  {
 
     CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
 
-    int mCharStrength = character.getStrength();
-     int mCharHitpoints = character.getHP();
-     int mEnemyHitpoints = enemy.getHP();
-     int mEnemyStr = enemy.getStr();
+    private int mCharStrength = character.getStrength();
+    private  int mCharHitpoints = character.getHP();
+    private  int mEnemyHitpoints = enemy.getHP();
+    private  int mEnemyStr = enemy.getStr();
      String mEnemyName = enemy.getName();
 
 
@@ -59,13 +59,13 @@ public class Combat  {
 
 
             playersTurn();
-            if (mEnemyHitpoints <= 0) {
+            if (enemyIsDead()) {
                 System.out.println("You have defeated the enemy, congratulations");
                 break;
 
             }
             enemyTurn();
-        } while (mEnemyHitpoints >= 0 || mCharHitpoints >= 0);
+        } while (!enemyIsDead() || !characterIsDead());
     }
 
     private int enemyAttack() {
@@ -84,6 +84,20 @@ public class Combat  {
         return mCharStrength;
 
 
+    }
+
+    public boolean enemyIsDead() {
+        if (mEnemyHitpoints <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean characterIsDead() {
+        if (mCharHitpoints <= 0) {
+            return true;
+        }
+        return false;
     }
 
 

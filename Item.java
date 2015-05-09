@@ -5,10 +5,13 @@ import com.company.CharBuilder;
 /**
  * Created by Robert on 5/2/2015.
  */
-/**
+
+import java.util.List;
+import java.util.ArrayList;
+
 public class Item {
 
-    public CharBuilder charBuilder = new CharBuilder();
+
     String mName;
     int mStr;
     int mIntl;
@@ -16,9 +19,11 @@ public class Item {
     int mHp;
     int mMp;
     int mCon;
+    int mValue;
+    private List<Item> itemList;
 
 
-    public  Item(String name, int str, int intl, int dex, int con, int hp, int mp) {
+    public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {
         mName = name;
         mStr = str;
         mIntl = intl;
@@ -26,17 +31,23 @@ public class Item {
         mDex = dex;
         mHp = hp;
         mMp = mp;
+        mValue = value;
 
+    }
+
+    public List<Item> createItemList() {
+        itemList = new ArrayList<>();
+        Item sword = new Item("sword",5,1,1,1,1,5,5);
+        itemList.add(sword);
+        return itemList;
     }
 
 
 
 
-    static Item sword = new Item("sword",1,1,1,1,5,5);
-    public static void equipItem(Item item) {
 
 
-    }
+
     public String getName() {
         return mName;
     }
@@ -60,4 +71,4 @@ public class Item {
     }
 
 }
-*/
+

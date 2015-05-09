@@ -65,6 +65,10 @@ public class Combat  {
 
             }
             enemyTurn();
+            if (characterIsDead()) {
+                System.out.println("You have fallen...");
+                break;
+            }
         } while (!enemyIsDead() || !characterIsDead());
     }
 

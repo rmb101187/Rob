@@ -31,6 +31,8 @@ public class Enemy {
         enemyList.add(slime);
         Enemy troll = new Enemy("Troll", 20, 8);
         enemyList.add(troll);
+        Enemy dragon = new Enemy("Dragon", 55, 16);
+        enemyList.add(dragon);
 
         return enemyList;
 

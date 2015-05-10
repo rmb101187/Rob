@@ -45,7 +45,8 @@ public class CharBuilder {
 
     String acceptedAnswers = "warrior wizard thief";
 
-        System.out.printf("Greetings adventurer would you say you are more of a warrior, wizard or more of the thievery type \n", mCharacterName);
+        System.out.printf("Greetings adventurer would you say you are more of a warrior, wizard " +
+                "or more of the thievery type \n", mCharacterName);
         String classAnswer = sc.nextLine();
         boolean isAcceptableClass = classAnswer.contains(acceptedAnswers);
         do  {

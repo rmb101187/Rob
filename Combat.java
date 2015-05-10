@@ -32,7 +32,8 @@ public class Combat  {
 
 
 
-        System.out.printf("A %s appears, it has %d hitpoints, and it's strength is %s \n", mEnemyName, mEnemyHitpoints, mEnemyStr);
+        System.out.printf("A %s appears, it has %d hitpoints, and it's strength is %s \n",
+                mEnemyName, mEnemyHitpoints, mEnemyStr);
     }
     public void playersTurn() {
 
@@ -79,7 +80,7 @@ public class Combat  {
                 System.exit(0);
 
             }
-        } while (!enemyIsDead() || !characterIsDead());
+        } while (!enemyIsDead() && !characterIsDead());
 
     }
 

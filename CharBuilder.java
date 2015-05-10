@@ -57,6 +57,7 @@ public class CharBuilder {
                 setmDexterity(6 + 1);
                 setHitPoints(40 + 20);
                 setManaPoints(40 - 10);
+
             } else if (classAnswer.equalsIgnoreCase("Wizard")) {
                 mCharClass = "wizard";
                 setStr(6 -1);
@@ -73,12 +74,13 @@ public class CharBuilder {
                 setmDexterity(6 + 5);
                 setHitPoints(40 + 10);
                 setManaPoints(mManaPoints + 10);
+
             } else {
                 System.out.println("I'm sorry, that is not an acceptable class, please pick warrior, wizard, or thief");
                 createHero();
             }
         }while (isAcceptableClass);
-        return this;
+        return this; // return the instance and values that have been created for the character into the combat Class
     }
 
 
@@ -100,6 +102,9 @@ public class CharBuilder {
     }
     public int getMP() {
         return mManaPoints;
+    }
+    public String getCharClass() {
+        return mCharClass;
     }
 
 

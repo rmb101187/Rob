@@ -34,7 +34,7 @@ public class Enemy {
         Enemy dragon = new Enemy("Dragon", 55, 16);
         enemyList.add(dragon);
 
-        return enemyList;
+        return enemyList; // pass in values to
 
 
 
@@ -55,6 +55,8 @@ public class Enemy {
     public int getStr() {
         return mEnemyStr;
     }
+
+
 
 
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Combat  {
     Scanner sc = CharBuilder.sc;
-    Random randNum = new Random();
+    static Random randNum = new Random();
 
     List<Enemy> enemyList = new Enemy().createList();
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
@@ -17,7 +17,11 @@ public class Combat  {
     private  int mCharHitpoints = character.getHP();
     private  int mEnemyHitpoints = enemy.getHP();
     private  int mEnemyStr = enemy.getStr();
-     String mEnemyName = enemy.getName();
+    private int mCharManaPoints = character.getMP();
+    String mEnemyName = enemy.getName();
+    private String mSkillList;
+    private int mManaCost;
+
 
 
 
@@ -38,6 +42,9 @@ public class Combat  {
             charAttack();
 
 
+        }
+        else if (actionAnswer.equalsIgnoreCase("skill")) {
+            pickSkill();
         }
 
 
@@ -61,22 +68,27 @@ public class Combat  {
             playersTurn();
             if (enemyIsDead()) {
                 System.out.println("You have defeated the enemy, congratulations");
+
                 break;
+
 
             }
             enemyTurn();
             if (characterIsDead()) {
                 System.out.println("You have fallen...");
-                break;
+                System.exit(0);
+
             }
         } while (!enemyIsDead() || !characterIsDead());
+
     }
 
     private int enemyAttack() {
 
         mCharHitpoints -= mEnemyStr;
-        System.out.printf("It is the enemy's turn, it attacks doing %s damage, your current hp is %s \n",
-                mEnemyStr, mCharHitpoints);
+        System.out.printf("It is the enemy's turn, it attacks doing %s damage, your current hp is %s and your current" +
+                        "mp is %d \n",
+                mEnemyStr, mCharHitpoints, mCharManaPoints);
         return mEnemyStr;
     }
 
@@ -89,6 +101,48 @@ public class Combat  {
 
 
     }
+
+    public void pickSkill() {
+        System.out.printf("Your current skill list is: %s \n", setSkillList());
+        System.out.println("Which would you like to use");
+        String skillAnswer = sc.nextLine();
+        boolean isKnownSkill = setSkillList().contains(skillAnswer);
+        int skillDamage;
+        while (isKnownSkill) {
+            if (skillAnswer.equalsIgnoreCase("bash")) {
+                mManaCost = 10;
+                if (isManaInSufficent()) {
+                    System.out.println("You do not have enough mana for this skill, please choose another");
+                    pickSkill();
+                }
+                depleteMana();
+
+                skillDamage = mCharStrength + 3;
+                mEnemyHitpoints -= skillDamage;
+                System.out.printf("You use your bash skill, hitting the enemy and doing %d damage \n", skillDamage);
+                break;
+            }
+            else if (skillAnswer.equalsIgnoreCase("slam")) {
+                mManaCost = 5;
+                if (isManaInSufficent()) {
+                    System.out.println("You do not have enough mana for this skill, please choose another");
+                    pickSkill();
+                }
+                depleteMana();
+                skillDamage = mCharStrength + 2;
+                mEnemyHitpoints -= skillDamage;
+                System.out.printf("You use your slam skill, hitting the enemy and doing %d damage \n", skillDamage);
+                break;
+            }
+            else {
+                    System.out.println("That is not a known skill");
+                    playersTurn();
+                }
+
+            }
+        }
+
+
 
     public boolean enemyIsDead() {
         if (mEnemyHitpoints <= 0) {
@@ -103,6 +157,38 @@ public class Combat  {
         }
         return false;
     }
+
+    public Enemy slainEnemy() {
+        return this.enemy;
+    }
+
+    public String setSkillList() {
+        if (character.getCharClass().equalsIgnoreCase("warrior")) {
+            mSkillList = "bash slam ";
+
+        }
+        else if (character.getCharClass().equalsIgnoreCase("wizard")) {
+            mSkillList = "Fireball, Icecicle ";
+        }
+        else if (character.getCharClass().equalsIgnoreCase("thief")) {
+            mSkillList = "stab knife ";
+        }
+        return mSkillList;
+    }
+
+    public boolean isManaInSufficent() {
+        if (mManaCost > mCharManaPoints ) {
+            return true;
+        }
+        return false;
+    }
+
+    public int depleteMana() {
+        mCharManaPoints -= mManaCost;
+        return mManaCost;
+    }
+
+
 
 
 

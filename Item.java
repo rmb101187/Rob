@@ -20,7 +20,7 @@ public class Item {
     int mMp;
     int mCon;
     int mValue;
-    private List<Item> itemList;
+    List<Item> itemList;
 
 
     public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {

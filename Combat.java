@@ -12,15 +12,16 @@ public class Combat  {
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
 
     CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
-
+    SkillBook skillBook = new SkillBook().createSkillList(character.getCharClass());
     private int mCharStrength = character.getStrength();
     private  int mCharHitpoints = character.getHP();
     private  int mEnemyHitpoints = enemy.getHP();
     private  int mEnemyStr = enemy.getStr();
     private int mCharManaPoints = character.getMP();
     String mEnemyName = enemy.getName();
-    private String mSkillList;
+    private String mSkillList = skillBook.getSkillList();
     private int mManaCost;
+
 
 
 
@@ -104,13 +105,13 @@ public class Combat  {
     }
 
     public void pickSkill() {
-        System.out.printf("Your current skill list is: %s \n", setSkillList());
+        System.out.printf("Your current skill list is: %s \n", mSkillList);
         System.out.println("Which would you like to use");
         String skillAnswer = sc.nextLine();
-        boolean isKnownSkill = setSkillList().contains(skillAnswer);
+        boolean isKnownSkill = mSkillList.contains(skillAnswer);
         int skillDamage;
         while (isKnownSkill) {
-            if (skillAnswer.equalsIgnoreCase("bash")) {
+            if (skillAnswer.toLowerCase().equals("bash")) {
                 mManaCost = 10;
                 if (isManaInSufficent()) {
                     System.out.println("You do not have enough mana for this skill, please choose another");
@@ -122,8 +123,7 @@ public class Combat  {
                 mEnemyHitpoints -= skillDamage;
                 System.out.printf("You use your bash skill, hitting the enemy and doing %d damage \n", skillDamage);
                 break;
-            }
-            else if (skillAnswer.equalsIgnoreCase("slam")) {
+            } else if (skillAnswer.equalsIgnoreCase("slam")) {
                 mManaCost = 5;
                 if (isManaInSufficent()) {
                     System.out.println("You do not have enough mana for this skill, please choose another");
@@ -135,13 +135,9 @@ public class Combat  {
                 System.out.printf("You use your slam skill, hitting the enemy and doing %d damage \n", skillDamage);
                 break;
             }
-            else {
-                    System.out.println("That is not a known skill");
-                    playersTurn();
-                }
 
-            }
         }
+    }
 
 
 
@@ -163,19 +159,7 @@ public class Combat  {
         return this.enemy;
     }
 
-    public String setSkillList() {
-        if (character.getCharClass().equalsIgnoreCase("warrior")) {
-            mSkillList = "bash slam ";
 
-        }
-        else if (character.getCharClass().equalsIgnoreCase("wizard")) {
-            mSkillList = "Fireball, Icecicle ";
-        }
-        else if (character.getCharClass().equalsIgnoreCase("thief")) {
-            mSkillList = "stab knife ";
-        }
-        return mSkillList;
-    }
 
     public boolean isManaInSufficent() {
         if (mManaCost > mCharManaPoints ) {

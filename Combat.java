@@ -113,36 +113,14 @@ public class Combat  {
         int skillDamage;
         do {
             if (skillAnswer.equalsIgnoreCase("bash")) {
-                mManaCost = 15;
-                if (isManaInSufficent()) {
-                    System.out.println("Sorry you do not have enough mana for this skill");
-                    playersTurn();
-                }
-                else {
-                    mSkillDamage = mCharStrength + 5;
-                    skillDamage();
-                    depleteMana();
-                    System.out.printf("You bash the enemy doing %d damage it currently has %d hitpoints " +
-                            "left  \n", mSkillDamage, mEnemyHitpoints);
-                    break;
-                }
+                useSkill("Bash", 15, 5);
+                break;
+
 
             }
             else if(skillAnswer.equalsIgnoreCase("slam")) {
-                mManaCost = 10;
-                if (isManaInSufficent()) {
-                    System.out.println("Sorry you do not have enough mana for this skill");
-                    playersTurn();
-                }
-                else {
-                    mSkillDamage = mCharStrength + 3;
-                    skillDamage();
-                    depleteMana();
-                    System.out.printf("You slam the opponent against the ground doing, %d damage it currently has" +
-                            " %d hitpoints left \n", mSkillDamage, mEnemyHitpoints);
-                    break;
-                }
-
+                useSkill("Slam", 10, 3);
+                break;
             }
 
             else {
@@ -195,6 +173,21 @@ public class Combat  {
         return mSkillDamage;
 
     }
+    public void useSkill(String skillName, int resourceCost, int damage) {
+        mManaCost = resourceCost;
+            if (isManaInSufficent()) {
+                System.out.println("Sorry you do not have enough mana for this skill");
+                playersTurn();
+            }
+            else {
+            mSkillDamage = mCharStrength + damage;
+            skillDamage();
+            depleteMana();
+            System.out.printf("You use the %s skill, you do %d damage and the enemy has %d hitpoints left, \n",
+                    skillName, mSkillDamage, mEnemyHitpoints);
+            }
+    }
+
 
 
 

@@ -22,6 +22,7 @@ public class Combat  {
     private String mSkillList = skillBook.getSkillList();
     private int mManaCost;
     private int mSkillDamage;
+    private String mCharClass;
 
 
 
@@ -113,16 +114,31 @@ public class Combat  {
         int skillDamage;
         do {
             if (skillAnswer.equalsIgnoreCase("bash")) {
-                useSkill("Bash", 15, 5);
+                useSkill("Warrior", "Bash", 15, 5);
                 break;
 
 
             }
             else if(skillAnswer.equalsIgnoreCase("slam")) {
-                useSkill("Slam", 10, 3);
+                useSkill("Warrior","Slam", 10, 3);
                 break;
             }
-
+            else if (skillAnswer.equalsIgnoreCase("fireball")) {
+                useSkill("Wizard","Fireball", 25, 10);
+                break;
+            }
+            else if (skillAnswer.equalsIgnoreCase("Icicle")) {
+                useSkill("Wizard","Icicle", 20, 8 );
+                break;
+            }
+            else if (skillAnswer.equalsIgnoreCase("stab")) {
+                useSkill("Thief","Stab", 20, 4);
+                break;
+            }
+            else if (skillAnswer.equalsIgnoreCase("Knife")) {
+                useSkill("Thief","Knife", 10, 3);
+                break;
+            }
             else {
                 System.out.println("Sorry that is not a known skill");
                 playersTurn();
@@ -173,10 +189,16 @@ public class Combat  {
         return mSkillDamage;
 
     }
-    public void useSkill(String skillName, int resourceCost, int damage) {
+    public void useSkill(String availableClass, String skillName, int resourceCost, int damage) {
         mManaCost = resourceCost;
+        mCharClass = availableClass;
+
             if (isManaInSufficent()) {
                 System.out.println("Sorry you do not have enough mana for this skill");
+                playersTurn();
+            }
+            else if (!availableClass.equalsIgnoreCase(character.getCharClass())) {
+                System.out.printf("Sorry, this skill is only for the %s class \n", availableClass);
                 playersTurn();
             }
             else {

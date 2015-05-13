@@ -37,8 +37,10 @@ public class Item {
 
     public List<Item> createItemList() {
         itemList = new ArrayList<>();
-        Item sword = new Item("sword",5,1,1,1,1,5,5);
+        Item sword = new Item("Sword",15,1,1,1,1,5,5);
+        Item helmet = new Item("Helmet",10,0,0,0,3,10,0);
         itemList.add(sword);
+        itemList.add(helmet);
         return itemList;
     }
 
@@ -68,6 +70,9 @@ public class Item {
     }
     public int getMP() {
         return mMp;
+    }
+    public int getValue() {
+        return mValue;
     }
 
 }

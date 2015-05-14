@@ -8,7 +8,7 @@ public class Combat  {
     Scanner sc = CharBuilder.sc;
     static Random randNum = new Random();
 
-    List<Enemy> enemyList = new Enemy().createListB();
+    List<Enemy> enemyList;
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
 
     CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
@@ -24,7 +24,17 @@ public class Combat  {
     private int mSkillDamage;
     private String mCharClass;
 
+    public Combat(String difficulty) {
+        if (difficulty.equalsIgnoreCase("easy")) {
+            enemyList = new Enemy().createListA();
+        }
+        else if (difficulty.equalsIgnoreCase("Hard")) {
+            enemyList = new Enemy().createListB();
+        }
 
+
+
+    }
 
 
 

@@ -16,7 +16,7 @@ public class Play {
         System.out.printf("I see, your name is %s very well \n", name);
         Enemy enemy = new Enemy();
         enemy.createListB();
-        Combat combat = new Combat();
+        Combat combat = new Combat("easy");
         combat.combat();
 
     }

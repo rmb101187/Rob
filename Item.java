@@ -6,8 +6,10 @@ import com.company.CharBuilder;
  * Created by Robert on 5/2/2015.
  */
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Item {
 
@@ -21,6 +23,7 @@ public class Item {
     int mCon;
     int mValue;
     List<Item> itemList;
+    Map<Item, Integer> itemMap;
 
 
     public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {
@@ -45,6 +48,14 @@ public class Item {
         itemList.add(ruby);
 
         return itemList;
+    }
+
+    public Map<Item, Integer> shopItems() {
+        itemMap = new HashMap<>();
+        for (Item item : itemList) {
+            itemMap.put(item, item.getValue());
+        }
+        return itemMap;
     }
 
 

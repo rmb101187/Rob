@@ -8,7 +8,7 @@ public class Combat  {
     Scanner sc = CharBuilder.sc;
     static Random randNum = new Random();
 
-    List<Enemy> enemyList = new Enemy().createList();
+    List<Enemy> enemyList = new Enemy().createListB();
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
 
     CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();

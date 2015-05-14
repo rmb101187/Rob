@@ -23,7 +23,7 @@ public class Enemy {
 
     }
 
-    public List<Enemy> createList() {
+    public List<Enemy> createListA() {
         enemyList = new ArrayList<>();
         Enemy bat = new Enemy("bat", 10, 3);
         enemyList.add(bat);
@@ -38,6 +38,15 @@ public class Enemy {
 
 
 
+    }
+
+    public List<Enemy> createListB() {
+        enemyList = new ArrayList<>();
+        Enemy beholder = new Enemy("Beholder", 30, 12);
+        Enemy largeBat = new Enemy("Large Bat", 27, 9);
+        enemyList.add(beholder);
+        enemyList.add(largeBat);
+        return enemyList;
     }
     public void printEnemyList() {
         for (Enemy enemy : enemyList) {

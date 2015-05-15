@@ -31,8 +31,7 @@ public class Enemy {
         enemyList.add(slime);
         Enemy troll = new Enemy("Troll", 20, 8);
         enemyList.add(troll);
-        Enemy dragon = new Enemy("Dragon", 55, 16);
-        enemyList.add(dragon);
+
 
         return enemyList; // pass in values to
 
@@ -44,6 +43,8 @@ public class Enemy {
         enemyList = new ArrayList<>();
         Enemy beholder = new Enemy("Beholder", 30, 12);
         Enemy largeBat = new Enemy("Large Bat", 27, 9);
+        Enemy dragon = new Enemy("Dragon", 55, 16);
+        enemyList.add(dragon);
         enemyList.add(beholder);
         enemyList.add(largeBat);
         return enemyList;

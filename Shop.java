@@ -24,6 +24,7 @@ public class Shop {
         }
         String buyChoice = sc.nextLine();
         storeItems.get(buyChoice);
+        System.out.printf("So you want to buy  %s",buyChoice);
 
 
 

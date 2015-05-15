@@ -23,7 +23,7 @@ public class Item {
     int mCon;
     int mValue;
     List<Item> itemList;
-    Map<Item, Integer> itemMap;
+    Map<String, Item> itemMap;
 
 
     public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {
@@ -50,10 +50,10 @@ public class Item {
         return itemList;
     }
 
-    public Map<Item, Integer> shopItems() {
+    public Map<String, Item> shopItems() {
         itemMap = new HashMap<>();
         for (Item item : itemList) {
-            itemMap.put(item, item.getValue());
+            itemMap.put(item.getName(), item);
         }
         return itemMap;
     }

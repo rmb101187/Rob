@@ -8,33 +8,23 @@ public class Combat  {
     Scanner sc = CharBuilder.sc;
     static Random randNum = new Random();
 
-    List<Enemy> enemyList;
+    List<Enemy> enemyList = new Enemy().createListA();
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
 
     CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
     SkillBook skillBook = new SkillBook().createSkillList(character.getCharClass());
-    private int mCharStrength = character.getStrength();
-    private  int mCharHitpoints = character.getHP();
-    private  int mEnemyHitpoints = enemy.getHP();
-    private  int mEnemyStr = enemy.getStr();
-    private int mCharManaPoints = character.getMP();
+    int mCharStrength= character.getStrength();
+    int mCharHitpoints= character.getHP();
+    int mEnemyHitpoints= enemy.getHP();
+    int mEnemyStr= enemy.getStr();
+    int mCharManaPoints= character.getMP();
     String mEnemyName = enemy.getName();
     private String mSkillList = skillBook.getSkillList();
     private int mManaCost;
     private int mSkillDamage;
     private String mCharClass;
 
-    public Combat(String difficulty) {
-        if (difficulty.equalsIgnoreCase("easy")) {
-            enemyList = new Enemy().createListA();
-        }
-        else if (difficulty.equalsIgnoreCase("Hard")) {
-            enemyList = new Enemy().createListB();
-        }
 
-
-
-    }
 
 
 

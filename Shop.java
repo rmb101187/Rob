@@ -10,7 +10,7 @@ public class Shop {
     Scanner sc = CharBuilder.sc;
     private int goldCount;
     List<Item> itemList;
-    Map<String, Integer> storeItems;
+    Map<String, Item> storeItems;
 
     public Shop() {
         goldCount = 0;
@@ -18,14 +18,16 @@ public class Shop {
     }
     public void buyItem() {
         storeItems = new HashMap<>();
+
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
+            storeItems.put(item.getName(), item);
         }
         String buyChoice = sc.nextLine();
-        storeItems.get(buyChoice);
-        System.out.printf("So you want to buy  %s",buyChoice);
-
+        String buyChoiceToLower = buyChoice.toLowerCase();
+        Item item = storeItems.get(buyChoiceToLower);
+        System.out.printf("so you want to buy the %s for %d \n", item.getName(), item.getValue());
 
 
     }

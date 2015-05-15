@@ -40,9 +40,9 @@ public class Item {
 
     public List<Item> createItemList() {
         itemList = new ArrayList<>();
-        Item sword = new Item("Sword",15,1,1,1,1,5,5);
-        Item helmet = new Item("Helmet",10,0,0,0,3,10,0);
-        Item ruby = new Item("Ruby",100, 0, 0, 0, 0, 0, 0);
+        Item sword = new Item("sword",15,1,1,1,1,5,5);
+        Item helmet = new Item("helmet",10,0,0,0,3,10,0);
+        Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0);
         itemList.add(sword);
         itemList.add(helmet);
         itemList.add(ruby);

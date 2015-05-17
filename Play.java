@@ -15,8 +15,7 @@ public class Play {
         mCharName = name;
         System.out.printf("I see, your name is %s very well \n", name);
         Shop shop = new Shop();
-        shop.buyItem();
-
+        shop.enterShop();
 
         Enemy enemy = new Enemy();
         enemy.createListA();

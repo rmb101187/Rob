@@ -21,10 +21,10 @@ public class Shop {
         mGoldCount = characterInventory.getGold();
         itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();
     }
+
+
     public void buyItem() {
-        possessedItems = characterInventory.createPlayersItems();
-        storeItems = new HashMap<>();
-        mGoldCount = characterInventory.getGold();
+
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
@@ -47,5 +47,30 @@ public class Shop {
             System.out.println("I understand, maybe some other time");
         }
 
+    }
+    public void sellItem() {
+        System.out.println("You have the follow items to sell");
+        System.out.println("Which item would you like to sell?");
+        String sellChoice = sc.nextLine();
+        String sellChoiceToLower = sellChoice.toLowerCase();
+        Item item = storeItems.get(sellChoiceToLower);
+        System.out.printf("so you want to sell the %s for %d \n", item.getName(), item.getValue());
+        String decision  = sc.nextLine();
+        if (decision.equalsIgnoreCase("yes")) {
+            possessedItems.add(item);
+            mGoldCount += item.getValue();
+            System.out.printf("You sold the %s, this leaves you with %d gold \n",item.getName(),mGoldCount);
+
+        }
+        else {
+            System.out.println("I understand, maybe some other time");
+        }
+    }
+    public void enterShop() {
+        possessedItems = characterInventory.createPlayersItems();
+        storeItems = new HashMap<>();
+        mGoldCount = characterInventory.getGold();
+        buyItem();
+        sellItem();
     }
 }

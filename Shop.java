@@ -11,7 +11,7 @@ import java.util.*;
 public class Shop {
 
     Scanner sc = CharBuilder.sc;
-    private int mGoldCount;
+    private double mGoldCount;
     List<Item> itemList;
     List<Item> possessedItems;
     Map<String, Item> storeItems;
@@ -38,7 +38,7 @@ public class Shop {
         if (decision.equalsIgnoreCase("yes")) {
             possessedItems.add(item);
             mGoldCount -= item.getValue();
-            System.out.printf("You bought the %s, this leaves you with %d gold \n",item.getName(),mGoldCount);
+            System.out.printf("You bought the %s, this leaves you with %.2f gold \n",item.getName(),mGoldCount);
             for (Item possedItem : possessedItems) {
                 System.out.printf("You have the follow items %s \n", item.getName());
             }
@@ -54,12 +54,12 @@ public class Shop {
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();
         Item item = storeItems.get(sellChoiceToLower);
-        System.out.printf("so you want to sell the %s for %d \n", item.getName(), item.getValue());
+        System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
         String decision  = sc.nextLine();
         if (decision.equalsIgnoreCase("yes")) {
             possessedItems.add(item);
             mGoldCount += item.getValue();
-            System.out.printf("You sold the %s, this leaves you with %d gold \n",item.getName(),mGoldCount);
+            System.out.printf("You sold the %s, this leaves you with %.2f gold \n",item.getName(),mGoldCount);
 
         }
         else {
@@ -70,7 +70,26 @@ public class Shop {
         possessedItems = characterInventory.createPlayersItems();
         storeItems = new HashMap<>();
         mGoldCount = characterInventory.getGold();
-        buyItem();
-        sellItem();
+        String acceptableActions = "purchase shop sell leave";
+        System.out.println("You enter the shop, do you wish to browse items for purchase, " +
+                "or sell items you no longer use?");
+        String shopAnswer = sc.nextLine();
+        boolean isAcceptableAnswer = acceptableActions.contains(shopAnswer);
+        do {
+
+            if (shopAnswer.equalsIgnoreCase("buy")) {
+                buyItem();
+
+            } else if (shopAnswer.equalsIgnoreCase("sell")) {
+                sellItem();
+            } else if (shopAnswer.equalsIgnoreCase("leave")) {
+                System.out.println("You leave the shop");
+                break;
+            } else {
+                System.out.println("Please choose buy, or sell, or leave to leave the shop");
+
+
+            }
+        } while (isAcceptableAnswer);
     }
 }

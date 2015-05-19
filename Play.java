@@ -15,13 +15,15 @@ public class Play {
         mCharName = name;
         System.out.printf("I see, your name is %s very well \n", name);
         Shop shop = new Shop();
-        shop.enterShop();
+
 
         Enemy enemy = new Enemy();
         enemy.createListA();
 
         Combat combat = new Combat();
         combat.combat();
+        Loot loot = new Loot();
+        loot.test();
 
     }
 }

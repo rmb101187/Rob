@@ -23,7 +23,7 @@ public class Shop {
     }
 
 
-    public void buyItem() {
+    public void buyItem() throws  NullPointerException {
 
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
@@ -33,21 +33,27 @@ public class Shop {
         String buyChoice = sc.nextLine();
         String buyChoiceToLower = buyChoice.toLowerCase();
         Item item = storeItems.get(buyChoiceToLower);
+
         System.out.printf("so you want to buy the %s for %d \n", item.getName(), item.getValue());
-        String decision  = sc.nextLine();
-        if (decision.equalsIgnoreCase("yes")) {
-            possessedItems.add(item);
-            mGoldCount -= item.getValue();
-            System.out.printf("You bought the %s, this leaves you with %.2f gold \n",item.getName(),mGoldCount);
-            for (Item possedItem : possessedItems) {
-                System.out.printf("You have the follow items %s \n", item.getName());
+        String decision = sc.nextLine();
+
+
+            if (decision.equalsIgnoreCase("yes")) {
+
+                possessedItems.add(item);
+                mGoldCount -= item.getValue();
+                System.out.printf("You bought the %s, this leaves you with %.2f gold \n", item.getName(), mGoldCount);
+                for (Item possedItem : possessedItems) {
+                    System.out.printf("You have the follow items %s \n", item.getName());
+                }
+            } else {
+                System.out.println("I understand, maybe some other time");
             }
-        }
-        else {
-            System.out.println("I understand, maybe some other time");
-        }
+
 
     }
+
+
     public void sellItem() {
         System.out.println("You have the follow items to sell");
         System.out.println("Which item would you like to sell?");

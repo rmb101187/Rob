@@ -14,11 +14,11 @@ public class SkillBook {
             mSkillList = skillBook;
         }
         else if(charClass.equalsIgnoreCase("wizard")) {
-            skillBook = "Fireball, Icicle";
+            skillBook = "Fireball, Icicle ";
             mSkillList = skillBook;
         }
         else {
-            skillBook = "Stab Knife";
+            skillBook = "Stab Knife ";
             mSkillList = skillBook;
         }
         return this;

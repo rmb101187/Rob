@@ -29,7 +29,9 @@ public class Combat  {
 
 
 
-
+    public Combat getCombat() {
+        return this;
+    }
 
     public void initiateCombat() {
 
@@ -167,9 +169,7 @@ public class Combat  {
         return false;
     }
 
-    public Enemy slainEnemy() {
-        return this.enemy;
-    }
+
 
 
 
@@ -208,6 +208,10 @@ public class Combat  {
             System.out.printf("You use the %s skill, you do %d damage and the enemy has %d hitpoints left, \n",
                     skillName, mSkillDamage, mEnemyHitpoints);
             }
+    }
+
+    public Enemy slainEnemy() {
+        return enemy;
     }
 
 

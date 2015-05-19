@@ -23,6 +23,7 @@ public class Combat  {
     private int mManaCost;
     private int mSkillDamage;
     private String mCharClass;
+    Loot loot;
 
 
 
@@ -66,7 +67,7 @@ public class Combat  {
 
     }
     public void combat() {
-
+        loot = new Loot(enemy, mEnemyName);
         initiateCombat();
         do {
 
@@ -78,6 +79,7 @@ public class Combat  {
                 break;
 
 
+
             }
             enemyTurn();
             if (characterIsDead()) {
@@ -86,7 +88,7 @@ public class Combat  {
 
             }
         } while (!enemyIsDead() && !characterIsDead());
-
+        loot.test();
     }
 
     private int enemyAttack() {

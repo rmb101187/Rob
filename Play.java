@@ -22,8 +22,8 @@ public class Play {
 
         Combat combat = new Combat();
         combat.combat();
-        Loot loot = new Loot();
-        loot.test();
+
+
 
     }
 }

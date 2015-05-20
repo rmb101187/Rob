@@ -18,11 +18,13 @@ public class Combat  {
     int mEnemyHitpoints= enemy.getHP();
     int mEnemyStr= enemy.getStr();
     int mCharManaPoints= character.getMP();
+    private String mEnemyDifficulty = enemy.getDifficulty();
     String mEnemyName = enemy.getName();
     private String mSkillList = skillBook.getSkillList();
     private int mManaCost;
     private int mSkillDamage;
     private String mCharClass;
+
     Loot loot;
 
 
@@ -67,7 +69,7 @@ public class Combat  {
 
     }
     public void combat() {
-        loot = new Loot(enemy, mEnemyName);
+        loot = new Loot(enemy, mEnemyName, enemy.getDifficulty());
         initiateCombat();
         do {
 
@@ -88,7 +90,7 @@ public class Combat  {
 
             }
         } while (!enemyIsDead() && !characterIsDead());
-        loot.test();
+        loot.loot();
     }
 
     private int enemyAttack() {

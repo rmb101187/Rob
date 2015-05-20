@@ -10,12 +10,13 @@ public class Enemy {
     private int mEnemyHp;
     private String mEnemyName;
     private int mEnemyStr;
+    private String mDifficultRanking;
     List<Enemy> enemyList;
 
 
-    public  Enemy(String name, int hp, int Str) {
+    public  Enemy(String name,String difficultyRanking, int hp, int Str) {
         mEnemyName = name;
-
+        mDifficultRanking = difficultyRanking;
         mEnemyHp = hp;
         mEnemyStr = Str;
     }
@@ -25,12 +26,19 @@ public class Enemy {
 
     public List<Enemy> createListA() {
         enemyList = new ArrayList<>();
-        Enemy bat = new Enemy("bat", 10, 3);
+        Enemy bat = new Enemy("bat", "easy", 10, 3);
         enemyList.add(bat);
-        Enemy slime = new Enemy("slime", 16, 5);
+        Enemy slime = new Enemy("slime", "easy", 16, 5);
         enemyList.add(slime);
-        Enemy troll = new Enemy("Troll", 20, 8);
+        Enemy troll = new Enemy("Troll", "easy", 20, 8);
         enemyList.add(troll);
+        Enemy beholder = new Enemy("Beholder","hard", 30, 12);
+        Enemy largeBat = new Enemy("Large Bat","hard", 27, 9);
+        Enemy dragon = new Enemy("Dragon", "hard", 55, 16);
+        enemyList.add(dragon);
+        enemyList.add(beholder);
+        enemyList.add(largeBat);
+
 
 
         return enemyList; // pass in values to
@@ -39,16 +47,7 @@ public class Enemy {
 
     }
 
-    public List<Enemy> createListB() {
-        enemyList = new ArrayList<>();
-        Enemy beholder = new Enemy("Beholder", 30, 12);
-        Enemy largeBat = new Enemy("Large Bat", 27, 9);
-        Enemy dragon = new Enemy("Dragon", 55, 16);
-        enemyList.add(dragon);
-        enemyList.add(beholder);
-        enemyList.add(largeBat);
-        return enemyList;
-    }
+
     public void printEnemyList() {
         for (Enemy enemy : enemyList) {
             System.out.printf("This list contains the enemies %s \n", enemy.getName());
@@ -64,6 +63,9 @@ public class Enemy {
 
     public int getStr() {
         return mEnemyStr;
+    }
+    public String getDifficulty() {
+        return mDifficultRanking;
     }
 
 

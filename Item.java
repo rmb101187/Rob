@@ -22,7 +22,7 @@ public class Item {
     int mMp;
     int mCon;
     int mValue;
-    List<Item> itemList;
+    static List<Item> itemList;
     Map<String, Item> itemMap;
 
 
@@ -38,7 +38,7 @@ public class Item {
 
     }
 
-    public List<Item> createItemList() {
+    public static List<Item> createItemList() {
         itemList = new ArrayList<>();
         Item sword = new Item("sword",15,1,1,1,1,5,5);
         Item helmet = new Item("helmet",10,0,0,0,3,10,0);

@@ -19,12 +19,12 @@ public class Shop {
 
 
     public Shop() {
-        mGoldCount = characterInventory.getGold();
+        mGoldCount = Loot.getGold();
         itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();
     }
 
 
-    public void buyItem() throws  NullPointerException {
+    public void buyItem()  {
 
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {

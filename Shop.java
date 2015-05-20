@@ -17,6 +17,7 @@ public class Shop {
     Map<String, Item> storeItems;
     characterInventory characterInventory = new characterInventory();
 
+
     public Shop() {
         mGoldCount = characterInventory.getGold();
         itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();

@@ -7,12 +7,13 @@ import java.util.Random;
  */
 public class Loot {
     private Random randNum = Combat.randNum;
-    private int randGold;
-    private Enemy mEnemy;
-    private String mEnemyName;
-    private String mEnemyDifficulty;
+    static int randGold;
+    static Enemy mEnemy;
+    static String mEnemyName;
+    static String mEnemyDifficulty;
+    static double mGoldLooted;
 
-    public Loot(Enemy enemy,String enemyName, String enemyDifficulty ) {
+    public  Loot(Enemy enemy,String enemyName, String enemyDifficulty ) {
         mEnemy = enemy;
         mEnemyName = enemyName;
         mEnemyDifficulty = enemyDifficulty;
@@ -24,6 +25,7 @@ public class Loot {
         else {
             randGold = randNum.nextInt(100);
         }
+         mGoldLooted += randGold;
          System.out.printf("The %s drops a chest in front of you, it contains %d gp", mEnemyName, randGold);
     }
 }

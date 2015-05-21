@@ -56,7 +56,7 @@ public class Shop {
 
 
     public void sellItem() {
-        System.out.println("You have the follow items to sell");
+        System.out.println("You have the following items to sell");
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();

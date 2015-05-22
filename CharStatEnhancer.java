@@ -8,12 +8,34 @@ import java.util.List;
 public class CharStatEnhancer {
     Shop shop = new Shop();
     List<Item> characterItems;
-    private int addStr;
-    private int addDex;
-    private int addCon;
-    private int addInt;
-    private int addHP;
-    private int addMP;
+    private int mStr;
+    private int mDex;
+    private int mCon;
+    private int mInt;
+    private int mHP;
+    private int mMP;
 
 
+    public CharStatEnhancer(int str, int dex, int con, int intl, int hp, int mp) {
+        characterItems = Shop.getPossessedItems();
+
+    }
+    public int getStr() {
+        return mStr;
+    }
+    public int getDex() {
+        return mDex;
+    }
+    public int getCon() {
+        return mCon;
+    }
+    public int getInt() {
+        return mInt;
+    }
+    public int getHP() {
+        return mHP;
+    }
+    public int getMP() {
+        return mMP;
+    }
 }

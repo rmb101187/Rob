@@ -13,7 +13,7 @@ public class Shop {
     Scanner sc = CharBuilder.sc;
     private double mGoldCount;
     List<Item> itemList;
-    List<Item> possessedItems;
+    static List<Item> possessedItems;
     Map<String, Item> storeItems;
     characterInventory characterInventory = new characterInventory();
 
@@ -98,5 +98,9 @@ public class Shop {
 
             }
         } while (isAcceptableAnswer);
+    }
+
+    public static List<Item> getPossessedItems() {
+        return possessedItems;
     }
 }

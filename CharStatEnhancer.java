@@ -17,7 +17,7 @@ public class CharStatEnhancer {
 
 
     public CharStatEnhancer(int str, int dex, int con, int intl, int hp, int mp) {
-        characterItems = Shop.getPossessedItems();
+        characterItems = CharacterInventory.createPlayersItems();
 
     }
     public int getStr() {

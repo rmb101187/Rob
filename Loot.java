@@ -21,14 +21,14 @@ public class Loot {
     public void loot() {
         if (mEnemyDifficulty.equalsIgnoreCase("hard")) {
             randGold = randNum.nextInt(100) + 50;
+
         }
         else {
             randGold = randNum.nextInt(100);
         }
          mGoldLooted += randGold;
+         CharacterInventory.setGold(mGoldLooted);
          System.out.printf("The %s drops a chest in front of you, it contains %d gp", mEnemyName, randGold);
     }
-    public static double getGold() {
-        return mGoldLooted;
-    }
+
 }

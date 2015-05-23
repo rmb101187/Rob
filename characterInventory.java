@@ -6,13 +6,13 @@ import java.util.List;
 /**
  * Created by Robert on 5/14/2015.
  */
-public class characterInventory {
+public class CharacterInventory {
     public List<Item> mCharacterInventory;
-    public List<Item> possessedItems;
+    static public List<Item> possessedItems;
     private Item mItem;
-    private int mGoldCount;
+    static private double mGoldCount;
 
-    public characterInventory() {
+    public CharacterInventory() {
         mGoldCount = 1000;
     }
 
@@ -27,14 +27,14 @@ public class characterInventory {
         return mCharacterInventory;
     }
 
-    public int getGold() {
+    public static double getGold() {
         return mGoldCount;
     }
-    public int setGold(int gold) {
+    public static double setGold(double gold) {
         mGoldCount =gold;
         return mGoldCount;
     }
-    public List<Item> createPlayersItems() {
+    public static List<Item> createPlayersItems() {
         possessedItems = new ArrayList<>();
         return possessedItems;
     }

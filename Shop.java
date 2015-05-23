@@ -77,11 +77,23 @@ public class Shop {
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();
-        Item item = storeItems.get(sellChoiceToLower);
+        try {
+            Item item = storeItems.get(sellChoiceToLower);
+        } catch (NullPointerException itemNotFound) {
+            System.out.println("Sorry, this item was not found, please try again");
+            sellItem();
+        }
         System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
         String decision  = sc.nextLine();
+
         if (decision.equalsIgnoreCase("yes")) {
-            possessedItems.add(item);
+
+            try {
+                possessedItems.add(item);
+            } catch (NullPointerException itemNotFound) {
+                System.out.println("Sorry item not found please try again");
+                sellItem();
+            }
             mGoldCount += item.getValue();
             System.out.printf("You sold the %s, this leaves you with %.2f gold \n",item.getName(),mGoldCount);
 

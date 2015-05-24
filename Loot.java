@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -7,11 +8,15 @@ import java.util.Random;
  */
 public class Loot {
     private Random randNum = Combat.randNum;
-    int randGold;
-    Enemy mEnemy;
-    String mEnemyName;
-    String mEnemyDifficulty;
+    private int randGold;
+    private Enemy mEnemy;
+    private String mEnemyName;
+    private String mEnemyDifficulty;
     static double mGoldLooted;
+    private List<Item> availableItems;
+    private List<Item> possessedItems;
+    Item mFoundItem;
+
 
     public  Loot(Enemy enemy,String enemyName, String enemyDifficulty ) {
         mEnemy = enemy;
@@ -28,7 +33,20 @@ public class Loot {
         }
          mGoldLooted += randGold;
          CharacterInventory.setGold(mGoldLooted);
-         System.out.printf("The %s drops a chest in front of you, it contains %d gp", mEnemyName, randGold);
+         System.out.printf("The %s drops a chest in front of you, it contains %d gp \n", mEnemyName, randGold);
+         lootItem();
+    }
+
+    public void lootItem() {
+        availableItems = Item.createItemList();
+        possessedItems = CharacterInventory.createPlayersItems();
+        mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
+        possessedItems.add(mFoundItem);
+        System.out.printf("Congratulations you found a %s \n", mFoundItem.getName());
+
+
+        
+
     }
 
 }

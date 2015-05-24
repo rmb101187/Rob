@@ -136,7 +136,7 @@ public class Shop {
             }
             else {
                 System.out.println("Please choose buy, or sell, or leave to leave the shop");
-                enterShop();
+
 
 
             }

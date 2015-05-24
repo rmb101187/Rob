@@ -21,12 +21,13 @@ public class Shop {
 
 
     public Shop() {
-        mGoldCount = CharacterInventory.getGold();
+        mGoldCount = 1000; //CharacterInventory.getGold();
         itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();
     }
 
 
     public void buyItem  () throws NullPointerException  {
+        possessedItems = CharacterInventory.createPlayersItems();
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
@@ -61,7 +62,7 @@ public class Shop {
                     System.out.printf("You bought the %s, this leaves you with %.2f gold \n", item.getName(),
                             mGoldCount);
                     for (Item possedItem : possessedItems) {
-                        System.out.printf("You have the follow items %s \n", item.getName());
+                        System.out.printf("You have the following items %s \n", item.getName());
                     }
                 }
             } else {
@@ -73,18 +74,23 @@ public class Shop {
 
 
     public void sellItem() {
+        if (possessedItems.isEmpty()) {
+            System.out.println("Sorry you have no items to sell");
+            enterShop();
+        }
         System.out.println("You have the following items to sell");
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();
         try {
             Item item = storeItems.get(sellChoiceToLower);
-        } catch (NullPointerException itemNotFound) {
-            System.out.println("Sorry, this item was not found, please try again");
-            sellItem();
-        }
+
         System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
-        String decision  = sc.nextLine();
+        } catch (NullPointerException itemNotFound) {
+        System.out.println("Sorry, this item was not found, please try again");
+        sellItem();
+        }
+        decision  = sc.nextLine();
 
         if (decision.equalsIgnoreCase("yes")) {
 
@@ -105,13 +111,15 @@ public class Shop {
     public void enterShop() {
         possessedItems = CharacterInventory.createPlayersItems();
         storeItems = new HashMap<>();
-        mGoldCount = CharacterInventory.getGold();
-        String acceptableActions = "purchase shop sell leave";
-        System.out.println("You enter the shop, do you wish to browse items for purchase, " +
-                "or sell items you no longer use?");
-        String shopAnswer = sc.nextLine();
-        boolean isAcceptableAnswer = acceptableActions.contains(shopAnswer);
+        mGoldCount = 1000; //CharacterInventory.getGold();
+        String acceptableActions = "purchase shop sell leave exit";
+        boolean isAcceptableAnswer;
         do {
+
+            System.out.println("You enter the shop, do you wish to browse items for purchase, " +
+                    "or sell items you no longer use?");
+            String shopAnswer = sc.nextLine();
+            isAcceptableAnswer = acceptableActions.contains(shopAnswer);
 
             if (shopAnswer.equalsIgnoreCase("buy")) {
                 buyItem();
@@ -121,7 +129,12 @@ public class Shop {
             } else if (shopAnswer.equalsIgnoreCase("leave")) {
                 System.out.println("You leave the shop");
                 break;
-            } else {
+            }
+            else if (shopAnswer.equalsIgnoreCase("leave") || shopAnswer.equalsIgnoreCase("exit")) {
+                System.out.println("You leave the shop");
+                break;
+            }
+            else {
                 System.out.println("Please choose buy, or sell, or leave to leave the shop");
                 enterShop();
 

@@ -38,4 +38,9 @@ public class CharacterInventory {
         possessedItems = new ArrayList<>();
         return possessedItems;
     }
+    public static void printItemList() {
+        for (Item possessedItem : possessedItems) {
+            System.out.printf("You have the following items %s", possessedItem.getName());
+        }
+    }
 }

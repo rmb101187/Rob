@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Robert on 5/21/2015.
@@ -9,7 +8,6 @@ import java.util.Set;
 public class CharStatEnhancer {
     Shop shop = new Shop();
     List<Item> characterItems;
-    Set<Item> playerEquipable;
     private int mStr;
     private int mDex;
     private int mCon;
@@ -19,21 +17,9 @@ public class CharStatEnhancer {
 
 
     public CharStatEnhancer(int str, int dex, int con, int intl, int hp, int mp) {
-        characterItems = CharacterInventory.getPlayersItems();
-
+        characterItems = CharacterInventory.createPlayersItems();
 
     }
-    public Set<Item> setCharacterEquipable () {
-        for (Item item : characterItems) {
-            if (item.isEquipable()) {
-                playerEquipable.add(item);
-                System.out.printf("You have the following equippable items %s", item.getName());
-            }
-        }
-        return playerEquipable;
-    }
-
-
     public int getStr() {
         return mStr;
     }

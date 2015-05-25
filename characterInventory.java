@@ -1,7 +1,9 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Robert on 5/14/2015.
@@ -11,9 +13,11 @@ public class CharacterInventory {
     static public List<Item> possessedItems;
     private Item mItem;
     static private double mGoldCount;
+    static private Map<String, Item> characterSellableItems;
 
     public CharacterInventory() {
         mGoldCount = 1000;
+        possessedItems = new ArrayList<>();
     }
 
 
@@ -40,7 +44,18 @@ public class CharacterInventory {
     }
     public static void printItemList() {
         for (Item possessedItem : possessedItems) {
-            System.out.printf("You have the following items %s", possessedItem.getName());
+            System.out.printf("You have the following items %s \n", possessedItem.getName());
         }
+    }
+    public static List<Item> getPlayersItems() {
+        return possessedItems;
+    }
+
+    public static Map<String, Item> characterItemsAsMap() {
+        characterSellableItems = new HashMap<>();
+        for (Item item : possessedItems) {
+            characterSellableItems.put(item.getName(), item);
+        }
+        return characterSellableItems;
     }
 }

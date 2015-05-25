@@ -15,19 +15,22 @@ public class Shop {
     List<Item> itemList;
     static List<Item> possessedItems;
     Map<String, Item> storeItems;
+    Map<String, Item> characterItemList;
     Item item;
     String decision;
 
 
 
     public Shop() {
-        mGoldCount = 1000; //CharacterInventory.getGold();
+        mGoldCount = CharacterInventory.getGold();
         itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();
+        possessedItems = CharacterInventory.getPlayersItems();
     }
 
 
     public void buyItem  () throws NullPointerException  {
-        possessedItems = CharacterInventory.createPlayersItems();
+        possessedItems = CharacterInventory.getPlayersItems();
+
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
@@ -74,16 +77,24 @@ public class Shop {
 
 
     public void sellItem() {
+        possessedItems = CharacterInventory.getPlayersItems();
+        characterItemList = CharacterInventory.characterItemsAsMap();
+        mGoldCount = CharacterInventory.getGold();
+
+
         if (possessedItems.isEmpty()) {
             System.out.println("Sorry you have no items to sell");
             enterShop();
         }
         System.out.println("You have the following items to sell");
+        for (Item possessedItem : possessedItems) {
+            System.out.printf("%s \n", possessedItem.getName());
+        }
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();
         try {
-            Item item = storeItems.get(sellChoiceToLower);
+            item = characterItemList.get(sellChoiceToLower);
 
         System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
         } catch (NullPointerException itemNotFound) {
@@ -95,13 +106,18 @@ public class Shop {
         if (decision.equalsIgnoreCase("yes")) {
 
             try {
-                possessedItems.add(item);
-            } catch (NullPointerException itemNotFound) {
-                System.out.println("Sorry item not found please try again");
-                sellItem();
+                mGoldCount += item.getValue();
+                System.out.printf("You sold the item %s, your current gold count is %.2f \n", item.getName(), mGoldCount);
+                possessedItems.remove(item);
+            } catch (NullPointerException error) {
+                error.printStackTrace();
             }
-            mGoldCount += item.getValue();
-            System.out.printf("You sold the %s, this leaves you with %.2f gold \n",item.getName(),mGoldCount);
+
+
+
+
+
+
 
         }
         else {
@@ -109,11 +125,12 @@ public class Shop {
         }
     }
     public void enterShop() {
-        possessedItems = CharacterInventory.createPlayersItems();
+        possessedItems = CharacterInventory.getPlayersItems();
         storeItems = new HashMap<>();
-        mGoldCount = 1000; //CharacterInventory.getGold();
+        mGoldCount = CharacterInventory.getGold();
         String acceptableActions = "purchase shop sell leave exit";
         boolean isAcceptableAnswer;
+        CharacterInventory.printItemList();
         do {
 
             System.out.println("You enter the shop, do you wish to browse items for purchase, " +

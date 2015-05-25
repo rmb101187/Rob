@@ -24,6 +24,7 @@ public class Item {
     int mValue;
     static List<Item> itemList;
     Map<String, Item> itemMap;
+    static List<Item> rareItems;
 
 
     public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {
@@ -56,6 +57,18 @@ public class Item {
             itemMap.put(item.getName(), item);
         }
         return itemMap;
+    }
+
+     static List<Item> rareItemList() {
+        rareItems = new ArrayList<>();
+        Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0);
+        Item largeRuby = new Item("large ruby", 150, 0, 0, 0, 0, 0, 0);
+        Item GoldenSword = new Item("Golden Sword", 85, 10, 0, 4, 0, 20, 0 );
+        rareItems.add(ruby);
+        rareItems.add(largeRuby);
+        rareItems.add(GoldenSword);
+
+        return rareItems;
     }
 
 

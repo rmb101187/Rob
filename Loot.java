@@ -15,6 +15,8 @@ public class Loot {
     static double mGoldLooted;
     private List<Item> availableItems;
     private List<Item> possessedItems;
+    private List<Item> rareItems;
+    Item mRareItem;
     Item mFoundItem;
 
 
@@ -40,12 +42,21 @@ public class Loot {
     public void lootItem() {
         availableItems = Item.createItemList();
         possessedItems = CharacterInventory.createPlayersItems();
+        rareItems = Item.rareItemList();
         mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
+        mRareItem = rareItems.get(randNum.nextInt(rareItems.size()));
         possessedItems.add(mFoundItem);
+        int rareItemChance = randNum.nextInt(100);
         System.out.printf("Congratulations you found a %s \n", mFoundItem.getName());
+        if (rareItemChance > 65) {
+            System.out.printf("What luck!! You've found a rare item %s \n", mRareItem.getName());
+            possessedItems.add(mRareItem);
+        }
 
 
-        
+
+
+
 
     }
 

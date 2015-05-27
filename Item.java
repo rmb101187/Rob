@@ -22,12 +22,15 @@ public class Item {
     int mMp;
     int mCon;
     int mValue;
+    String mCategory;
+    boolean mIsEquipabble;
     static List<Item> itemList;
     Map<String, Item> itemMap;
     static List<Item> rareItems;
 
 
-    public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp) {
+    public  Item(String name,int value, int str, int intl, int dex, int con, int hp, int mp, boolean isEquippable,
+                 String category) {
         mName = name;
         mStr = str;
         mIntl = intl;
@@ -36,17 +39,19 @@ public class Item {
         mHp = hp;
         mMp = mp;
         mValue = value;
+        mIsEquipabble = isEquippable;
+        mCategory = category;
 
     }
 
     public static List<Item> createItemList() {
         itemList = new ArrayList<>();
-        Item sword = new Item("sword",15,1,1,1,1,5,5);
-        Item helmet = new Item("helmet",10,0,0,0,3,10,0);
-        Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0);
+        Item sword = new Item("sword",15,1,1,1,1,5,5, true, "weapon");
+        Item helmet = new Item("helmet",10,0,0,0,3,10,0, true, "head");
+
         itemList.add(sword);
         itemList.add(helmet);
-        itemList.add(ruby);
+
 
         return itemList;
     }
@@ -61,9 +66,9 @@ public class Item {
 
      static List<Item> rareItemList() {
         rareItems = new ArrayList<>();
-        Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0);
-        Item largeRuby = new Item("large ruby", 150, 0, 0, 0, 0, 0, 0);
-        Item GoldenSword = new Item("Golden Sword", 85, 10, 0, 4, 0, 20, 0 );
+        Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0, false, "rare");
+        Item largeRuby = new Item("large ruby", 150, 0, 0, 0, 0, 0, 0, false, "rare");
+        Item GoldenSword = new Item("Golden Sword", 85, 10, 0, 4, 0, 20, 0,true, "weapon");
         rareItems.add(ruby);
         rareItems.add(largeRuby);
         rareItems.add(GoldenSword);
@@ -100,6 +105,12 @@ public class Item {
     }
     public int getValue() {
         return mValue;
+    }
+    boolean isEquippable() {
+        return mIsEquipabble;
+    }
+    public String getCategory() {
+        return mCategory;
     }
 
 }

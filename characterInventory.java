@@ -9,11 +9,12 @@ import java.util.Map;
  * Created by Robert on 5/14/2015.
  */
 public class CharacterInventory {
-    public List<Item> mCharacterInventory;
+    static public List<Item> mCharacterInventory;
     static public List<Item> possessedItems;
     private Item mItem;
     static private double mGoldCount;
     static private Map<String, Item> characterSellableItems;
+    List<Item> test;
 
     public CharacterInventory() {
         mGoldCount = 1000;
@@ -26,7 +27,7 @@ public class CharacterInventory {
         System.out.printf("You have the following item : %s", mItem.getName());
     }
 
-    public List<Item> createItemList() {
+    public static List<Item> createItemList() {
         mCharacterInventory = new ArrayList<Item>();
         return mCharacterInventory;
     }
@@ -58,4 +59,6 @@ public class CharacterInventory {
         }
         return characterSellableItems;
     }
+
+
 }

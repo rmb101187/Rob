@@ -23,7 +23,7 @@ public class Shop {
 
     public Shop() {
         mGoldCount = CharacterInventory.getGold();
-        itemList = new Item("Helmet",10,0,0,0,3,10,0).createItemList();
+        itemList = new Item("Helmet",10,0,0,0,3,10,0,true,"head").createItemList();
         possessedItems = CharacterInventory.getPlayersItems();
     }
 

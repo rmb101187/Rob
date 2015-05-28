@@ -16,17 +16,19 @@ public class Play {
         String name = sc.nextLine();
         mCharName = name;
         System.out.printf("I see, your name is %s very well \n", name);
-        Shop shop = new Shop();
-
+        //Shop shop = new Shop();
+        CharStatEnhancer statEnhancer = new CharStatEnhancer();
+        statEnhancer.createEquippableList();
+        statEnhancer.printEquippables();
 
 
 
         Enemy enemy = new Enemy();
         enemy.createListA();
 
-        Combat combat = new Combat();
-        combat.combat();
-        shop.enterShop();
+        //Combat combat = new Combat();
+        //combat.combat();
+        //shop.enterShop();
 
 
 

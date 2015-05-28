@@ -21,19 +21,26 @@ public class CharStatEnhancer {
     Map<String, Item> mCategoryMap;
 
 
-    public CharStatEnhancer(int str, int dex, int con, int intl, int hp, int mp) {
-        characterItems = CharacterInventory.createPlayersItems();
 
-    }
 
     public List<Item> createEquippableList() {
-        mEquippableItems = new ArrayList<>();
+        mEquippableItems = CharacterInventory.getPlayersItems();
         for (Item item : mEquippableItems) {
             if (item.isEquippable()) {
                 mEquippableItems.add(item);
+
             }
         }
         return mEquippableItems;
+
+    }
+
+    public void printEquippables() {
+        createEquippableList();
+        for (Item item : mEquippableItems) {
+            createEquippableList();
+            System.out.printf("You can equip the following items %s", item.getName());
+        }
     }
 
     public Map<String, Item> setCategoryMap() {

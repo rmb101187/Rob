@@ -44,6 +44,11 @@ public class Item {
 
     }
 
+    public Item(boolean isEquippable, String name) {
+        mIsEquipabble = isEquippable;
+        mName = name;
+    }
+
     public static List<Item> createItemList() {
         itemList = new ArrayList<>();
         Item sword = new Item("sword",15,1,1,1,1,5,5, true, "weapon");
@@ -74,6 +79,17 @@ public class Item {
         rareItems.add(GoldenSword);
 
         return rareItems;
+    }
+
+    static List<Item> test() {
+        List<Item> testList = new ArrayList<>();
+        Item helmet = new Item(true, "helmet");
+        Item robe = new Item(true, "robe");
+        Item diamond = new Item(false, "diamond");
+        testList.add(helmet);
+        testList.add(robe);
+        testList.add(diamond);
+        return testList;
     }
 
 

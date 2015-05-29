@@ -19,7 +19,6 @@ public class Play {
         //Shop shop = new Shop();
         CharStatEnhancer statEnhancer = new CharStatEnhancer();
         statEnhancer.createEquippableList();
-        statEnhancer.printEquippables();
 
 
 

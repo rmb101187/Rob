@@ -17,6 +17,7 @@ public class CharStatEnhancer {
     private int mInt;
     private int mHP;
     private int mMP;
+    List<Item> mCharacterItems;
     List<Item> mEquippableItems;
     Map<String, Item> mCategoryMap;
 
@@ -24,24 +25,22 @@ public class CharStatEnhancer {
 
 
     public List<Item> createEquippableList() {
-        mEquippableItems = CharacterInventory.getPlayersItems();
-        for (Item item : mEquippableItems) {
+        mEquippableItems = new ArrayList<>();
+        mCharacterItems = Item.createItemList();
+        for (Item item : mCharacterItems) {
             if (item.isEquippable()) {
                 mEquippableItems.add(item);
 
             }
         }
+        for (Item item : mEquippableItems) {
+            System.out.printf("You can equip the following items %s \n ", item.getName());
+        }
         return mEquippableItems;
 
     }
 
-    public void printEquippables() {
-        createEquippableList();
-        for (Item item : mEquippableItems) {
-            createEquippableList();
-            System.out.printf("You can equip the following items %s", item.getName());
-        }
-    }
+
 
     public Map<String, Item> setCategoryMap() {
         mCategoryMap = new TreeMap<>();

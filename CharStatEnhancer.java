@@ -56,6 +56,18 @@ public class CharStatEnhancer {
                 mCategoryMap.put(item.getCategory(), item.getName());
                 System.out.printf("%s - ", item.getName());
             }
+            else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
+                mCategoryMap.put(item.getCategory(), item.getName());
+                System.out.printf("%s - ", item.getName());
+            }
+            else if (itemCategory.equalsIgnoreCase("torso") && item.getCategory().equalsIgnoreCase("torso")) {
+                mCategoryMap.put(item.getCategory(), item.getName());
+                System.out.printf("%s - ", item.getName());
+            }
+            else if (itemCategory.equalsIgnoreCase("feet") && item.getCategory().equalsIgnoreCase("feet")) {
+                mCategoryMap.put(item.getCategory(), item.getName());
+                System.out.printf("%s - ", item.getName());
+            }
 
         }
 
@@ -71,10 +83,23 @@ public class CharStatEnhancer {
         System.out.println("What equipment slot would you like to view ");
         String equipmentSlot = CharBuilder.sc.nextLine();
         if (equipmentSlot.equalsIgnoreCase("head")) {
-            System.out.println("Your helmet equippable items are as follows");
-            setCategoryMap("head");
+            showList("head");
+        }
+        else if (equipmentSlot.equalsIgnoreCase("weapon")) {
+            showList("weapon");
+        }
+        else if (equipmentSlot.equalsIgnoreCase("torso")) {
+            showList("torso");
+        }
+        else if (equipmentSlot.equalsIgnoreCase("feet")) {
+            showList("feet");
         }
 
+    }
+
+    public void showList(String itemType) {
+        System.out.printf("Your %s equippable items are as follows \n", itemType);
+        setCategoryMap(itemType);
     }
 
 

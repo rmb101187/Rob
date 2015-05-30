@@ -58,6 +58,7 @@ public class Item {
         itemList.add(helmet);
         itemList.add(chainMail);
         itemList.add(plateHelm);
+        itemList.add(leatherBoots);
 
         return itemList;
     }

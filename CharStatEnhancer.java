@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -20,11 +17,15 @@ public class CharStatEnhancer {
     private int mMP;
     List<Item> mCharacterItems;
     List<Item> mEquippableItems;
-    Map<String, Item> mCategoryMap;
+    Map<String, String> mCategoryMap;
     private boolean headEquipped;
     private boolean weaponEquipped;
     private boolean torsoEquipped;
     private boolean feetEquipped;
+    private Set headSet;
+    private Set weaponSet;
+    private Set torsoSet;
+    private Set feetSet;
 
 
 
@@ -40,22 +41,40 @@ public class CharStatEnhancer {
 
             }
         }
-        for (Item item : mEquippableItems) {
-            System.out.printf("You can equip the following items %s \n ", item.getName());
-        }
+
         return mEquippableItems;
 
     }
 
 
 
-    public Map<String, Item> setCategoryMap() {
-        mCategoryMap = new TreeMap<>();
+    public Map<String, String> setCategoryMap(String itemCategory) {
+
 
         for (Item item : mEquippableItems) {
-            mCategoryMap.put(item.getCategory(), item);
+            if (itemCategory.equalsIgnoreCase("head") && item.getCategory().equalsIgnoreCase("head")) {
+                mCategoryMap.put(item.getCategory(), item.getName());
+                System.out.printf("%s - ", item.getName());
+            }
+
         }
+
         return mCategoryMap;
+    }
+
+    public void itemByCategory() {
+        mEquippableItems = new ArrayList<>();
+        mCharacterItems = Item.createItemList();
+        mCategoryMap = new TreeMap<>();
+        mEquippableItems = createEquippableList();
+        createEquippableList();
+        System.out.println("What equipment slot would you like to view ");
+        String equipmentSlot = CharBuilder.sc.nextLine();
+        if (equipmentSlot.equalsIgnoreCase("head")) {
+            System.out.println("Your helmet equippable items are as follows");
+            setCategoryMap("head");
+        }
+
     }
 
 

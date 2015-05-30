@@ -52,10 +52,12 @@ public class Item {
         Item helmet = new Item("helmet",10,0,0,0,3,10,0, true, "head");
         Item chainMail = new Item("chain mail",20, 0, 0, 0, 4, 10, 0, true, "torso");
         Item leatherBoots = new Item("leather boots", 15, 0, 0, 0, 3, 0, 0, true, "feet");
+        Item plateHelm = new Item("plate helmet", 30, 0, 0, 0, 4, 15, 0, true, "head");
 
         itemList.add(sword);
         itemList.add(helmet);
         itemList.add(chainMail);
+        itemList.add(plateHelm);
 
         return itemList;
     }
@@ -72,7 +74,7 @@ public class Item {
         rareItems = new ArrayList<>();
         Item ruby = new Item("ruby",100, 0, 0, 0, 0, 0, 0, false, "rare");
         Item largeRuby = new Item("large ruby", 150, 0, 0, 0, 0, 0, 0, false, "rare");
-        Item GoldenSword = new Item("Golden Sword", 85, 10, 0, 4, 0, 20, 0,true, "weapon");
+        Item GoldenSword = new Item("golden sword", 85, 10, 0, 4, 0, 20, 0,true, "weapon");
         rareItems.add(ruby);
         rareItems.add(largeRuby);
         rareItems.add(GoldenSword);

@@ -18,7 +18,7 @@ public class Play {
         System.out.printf("I see, your name is %s very well \n", name);
         //Shop shop = new Shop();
         CharStatEnhancer statEnhancer = new CharStatEnhancer();
-        statEnhancer.createEquippableList();
+        statEnhancer.itemByCategory();
 
 
 

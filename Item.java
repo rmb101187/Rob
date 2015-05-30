@@ -44,19 +44,18 @@ public class Item {
 
     }
 
-    public Item(boolean isEquippable, String name) {
-        mIsEquipabble = isEquippable;
-        mName = name;
-    }
+
 
     public static List<Item> createItemList() {
         itemList = new ArrayList<>();
         Item sword = new Item("sword",15,1,1,1,1,5,5, true, "weapon");
         Item helmet = new Item("helmet",10,0,0,0,3,10,0, true, "head");
+        Item chainMail = new Item("chain mail",20, 0, 0, 0, 4, 10, 0, true, "torso");
+        Item leatherBoots = new Item("leather boots", 15, 0, 0, 0, 3, 0, 0, true, "feet");
 
         itemList.add(sword);
         itemList.add(helmet);
-
+        itemList.add(chainMail);
 
         return itemList;
     }
@@ -81,16 +80,7 @@ public class Item {
         return rareItems;
     }
 
-    static List<Item> test() {
-        List<Item> testList = new ArrayList<>();
-        Item helmet = new Item(true, "helmet");
-        Item robe = new Item(true, "robe");
-        Item diamond = new Item(false, "diamond");
-        testList.add(helmet);
-        testList.add(robe);
-        testList.add(diamond);
-        return testList;
-    }
+
 
 
 

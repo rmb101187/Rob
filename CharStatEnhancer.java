@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Robert on 5/21/2015.
@@ -20,6 +21,12 @@ public class CharStatEnhancer {
     List<Item> mCharacterItems;
     List<Item> mEquippableItems;
     Map<String, Item> mCategoryMap;
+    private boolean headEquipped;
+    private boolean weaponEquipped;
+    private boolean torsoEquipped;
+    private boolean feetEquipped;
+
+
 
 
 

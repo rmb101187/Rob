@@ -15,6 +15,7 @@ public class CharacterInventory {
     static private double mGoldCount;
     static private Map<String, Item> characterSellableItems;
     List<Item> test;
+    Item item;
 
     public CharacterInventory() {
         mGoldCount = 1000;
@@ -58,6 +59,11 @@ public class CharacterInventory {
             characterSellableItems.put(item.getName(), item);
         }
         return characterSellableItems;
+    }
+
+    public static void addPossessedItems(Item item) {
+        possessedItems.add(item);
+
     }
 
 

@@ -35,7 +35,7 @@ public class CharStatEnhancer {
 
     public List<Item> createEquippableList() {
         mEquippableItems = new ArrayList<>();
-        mCharacterItems = Item.createItemList();
+        mCharacterItems = CharacterInventory.getPlayersItems();
         for (Item item : mCharacterItems) {
             if (item.isEquippable()) {
                 mEquippableItems.add(item);
@@ -85,7 +85,7 @@ public class CharStatEnhancer {
         mCategoryMap = new TreeMap<>();
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
-        mCurrentlyEquipped = new ArrayList<>();
+        mCurrentlyEquipped = addEquippedItem();
         createEquippableList();
         System.out.println("What equipment slot would you like to view \n");
         String equipmentSlot = CharBuilder.sc.nextLine();
@@ -125,7 +125,8 @@ public class CharStatEnhancer {
             String equipChoiceLower = equipChoice.toLowerCase();
             item = mEquippedItems.get(equipChoiceLower);
             mEquippedItems.put(item.getName(), item);
-            mCurrentlyEquipped.add(item);
+            addEquippedItem();
+
 
         }
         else {
@@ -138,14 +139,14 @@ public class CharStatEnhancer {
             System.out.println("You currently have the following items equipped");
             System.out.printf("%s -", item.getName());
             System.out.println("\n");
-            System.out.println("Would you like to equip another item?");
-            String equipAgain = CharBuilder.sc.nextLine();
-            if (equipAgain.equalsIgnoreCase("yes")) {
-                itemByCategory();
-            }
+
 
         }
-
+        System.out.println("Would you like to equip another item?");
+        String equipAgain = CharBuilder.sc.nextLine();
+        if (equipAgain.equalsIgnoreCase("yes")) {
+            itemByCategory();
+        }
         return mEquippedItems;
     }
 
@@ -175,6 +176,13 @@ public class CharStatEnhancer {
         adjustStr();
         System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength",
                 getHP(), getMP(), getStr());
+    }
+
+    public List<Item> addEquippedItem() {
+        mCurrentlyEquipped = new ArrayList<>();
+        mCurrentlyEquipped.add(item);
+        return mCurrentlyEquipped;
+
     }
 
 

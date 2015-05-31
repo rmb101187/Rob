@@ -19,7 +19,7 @@ public class CharStatEnhancer {
     List<Item> mEquippableItems;
     Map<String, String> mCategoryMap;
     Map<String, Item> mEquippedItems;
-    List<Item> mCurrentlyEquipped;
+    List<Item> mCurrentlyEquipped = new ArrayList<>();
     private boolean headEquipped;
     private boolean weaponEquipped;
     private boolean torsoEquipped;
@@ -35,7 +35,7 @@ public class CharStatEnhancer {
 
     public List<Item> createEquippableList() {
         mEquippableItems = new ArrayList<>();
-        mCharacterItems = CharacterInventory.getPlayersItems();
+        mCharacterItems = Item.createItemList();
         for (Item item : mCharacterItems) {
             if (item.isEquippable()) {
                 mEquippableItems.add(item);
@@ -85,7 +85,6 @@ public class CharStatEnhancer {
         mCategoryMap = new TreeMap<>();
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
-        mCurrentlyEquipped = addEquippedItem();
         createEquippableList();
         System.out.println("What equipment slot would you like to view \n");
         String equipmentSlot = CharBuilder.sc.nextLine();
@@ -125,7 +124,7 @@ public class CharStatEnhancer {
             String equipChoiceLower = equipChoice.toLowerCase();
             item = mEquippedItems.get(equipChoiceLower);
             mEquippedItems.put(item.getName(), item);
-            addEquippedItem();
+            mCurrentlyEquipped.add(item);
 
 
         }
@@ -134,14 +133,12 @@ public class CharStatEnhancer {
             equipItem();
         }
 
-
+        System.out.println("You currently have the following items equipped");
         for (Item item : mCurrentlyEquipped) {
-            System.out.println("You currently have the following items equipped");
+
             System.out.printf("%s -", item.getName());
-            System.out.println("\n");
-
-
         }
+        System.out.println("\n");
         System.out.println("Would you like to equip another item?");
         String equipAgain = CharBuilder.sc.nextLine();
         if (equipAgain.equalsIgnoreCase("yes")) {
@@ -178,12 +175,7 @@ public class CharStatEnhancer {
                 getHP(), getMP(), getStr());
     }
 
-    public List<Item> addEquippedItem() {
-        mCurrentlyEquipped = new ArrayList<>();
-        mCurrentlyEquipped.add(item);
-        return mCurrentlyEquipped;
 
-    }
 
 
 

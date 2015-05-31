@@ -51,7 +51,7 @@ public class Item {
         Item sword = new Item("sword",15,1,1,1,1,5,5, true, "weapon");
         Item helmet = new Item("helmet",10,0,0,0,3,10,0, true, "head");
         Item chainMail = new Item("chain mail",20, 0, 0, 0, 4, 10, 0, true, "torso");
-        Item leatherBoots = new Item("leather boots", 15, 0, 0, 0, 3, 0, 0, true, "feet");
+        Item leatherBoots = new Item("leather boots", 15, 2, 0, 0, 0, 3, 3, true, "feet");
         Item plateHelm = new Item("plate helmet", 30, 0, 0, 0, 4, 15, 0, true, "head");
 
         itemList.add(sword);

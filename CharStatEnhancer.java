@@ -19,7 +19,7 @@ public class CharStatEnhancer {
     List<Item> mEquippableItems;
     Map<String, String> mCategoryMap;
     Map<String, Item> mEquippedItems;
-    List<Item> currentlyEquipped;
+    List<Item> mCurrentlyEquipped;
     private boolean headEquipped;
     private boolean weaponEquipped;
     private boolean torsoEquipped;
@@ -85,7 +85,7 @@ public class CharStatEnhancer {
         mCategoryMap = new TreeMap<>();
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
-        currentlyEquipped = new ArrayList<>();
+        mCurrentlyEquipped = new ArrayList<>();
         createEquippableList();
         System.out.println("What equipment slot would you like to view \n");
         String equipmentSlot = CharBuilder.sc.nextLine();
@@ -105,7 +105,7 @@ public class CharStatEnhancer {
             showList("feet");
             equipItem();
         }
-
+        adjustStats();
     }
 
     public void showList(String itemType) {
@@ -125,7 +125,7 @@ public class CharStatEnhancer {
             String equipChoiceLower = equipChoice.toLowerCase();
             item = mEquippedItems.get(equipChoiceLower);
             mEquippedItems.put(item.getName(), item);
-            currentlyEquipped.add(item);
+            mCurrentlyEquipped.add(item);
 
         }
         else {
@@ -134,14 +134,50 @@ public class CharStatEnhancer {
         }
 
 
-        for (Item item : currentlyEquipped) {
+        for (Item item : mCurrentlyEquipped) {
             System.out.println("You currently have the following items equipped");
             System.out.printf("%s -", item.getName());
+            System.out.println("\n");
+            System.out.println("Would you like to equip another item?");
+            String equipAgain = CharBuilder.sc.nextLine();
+            if (equipAgain.equalsIgnoreCase("yes")) {
+                itemByCategory();
+            }
 
         }
 
         return mEquippedItems;
     }
+
+    public int adjustHP() {
+        for (Item item: mCurrentlyEquipped) {
+            mHP += item.getHp();
+        }
+        return mHP;
+    }
+
+    public int adjustMP() {
+        for (Item item: mCurrentlyEquipped) {
+            mMP += item.getMP();
+        }
+        return mMP;
+    }
+    public int adjustStr() {
+        for (Item item: mCurrentlyEquipped) {
+            mStr += item.getStr();
+        }
+        return mStr;
+    }
+
+    public void adjustStats() {
+        adjustHP();
+        adjustMP();
+        adjustStr();
+        System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength",
+                getHP(), getMP(), getStr());
+    }
+
+
 
 
 

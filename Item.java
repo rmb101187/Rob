@@ -60,7 +60,7 @@ public class Item {
         itemList.add(plateHelm);
         itemList.add(leatherBoots);
 
-        return itemList;
+        return itemList; // static variable tp be passed to many classes
     }
 
     public Map<String, Item> shopItems() {
@@ -80,7 +80,7 @@ public class Item {
         rareItems.add(largeRuby);
         rareItems.add(GoldenSword);
 
-        return rareItems;
+        return rareItems; // rare Item list that has a probabilioty to drop after each combat
     }
 
 

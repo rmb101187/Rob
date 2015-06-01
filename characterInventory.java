@@ -62,7 +62,7 @@ public class CharacterInventory {
     }
 
     public static void addPossessedItems(Item item) {
-        possessedItems.add(item);
+        possessedItems.add(item); // allows both the combat class and shop class to add the PossesedItems list
 
     }
 

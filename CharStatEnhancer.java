@@ -38,7 +38,8 @@ public class CharStatEnhancer {
         mCharacterItems = Item.createItemList();
         for (Item item : mCharacterItems) {
             if (item.isEquippable()) {
-                mEquippableItems.add(item);
+                mEquippableItems.add(item); /* creates a list to be passed in to setCategory Map so that only items that
+                are equippable are tossed in */
 
             }
         }
@@ -76,7 +77,8 @@ public class CharStatEnhancer {
 
         }
         System.out.println("\n");
-        return mCategoryMap;
+        return mCategoryMap; /* this method simply takes a value passed in and sets mCategoryMap to only those items in
+        the category */
     }
 
     public void itemByCategory() {
@@ -86,7 +88,7 @@ public class CharStatEnhancer {
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
         createEquippableList();
-        System.out.println("What equipment slot would you like to view \n");
+        System.out.println("What equipment slot would you like to view \n"); // ask the user what category of equipment
         String equipmentSlot = CharBuilder.sc.nextLine();
         if (equipmentSlot.equalsIgnoreCase("head")) {
             showList("head");
@@ -102,14 +104,15 @@ public class CharStatEnhancer {
         }
         else if (equipmentSlot.equalsIgnoreCase("feet")) {
             showList("feet");
-            equipItem();
+            equipItem(); // equip the item and add it to list of equipped items
         }
         adjustStats();
     }
 
     public void showList(String itemType) {
         System.out.printf("Your %s equippable items are as follows \n", itemType);
-        setCategoryMap(itemType);
+        setCategoryMap(itemType); /* pulls only from the items that are equippable in that category of the item, so that
+        there is no confusion of trying to equip a an item in the wrong slot */
     }
 
     public Map<String, Item> equipItem() {
@@ -122,7 +125,7 @@ public class CharStatEnhancer {
             System.out.println("Which item would you like to equip");
             String equipChoice = CharBuilder.sc.nextLine();
             String equipChoiceLower = equipChoice.toLowerCase();
-            item = mEquippedItems.get(equipChoiceLower);
+            item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
             mEquippedItems.put(item.getName(), item);
             mCurrentlyEquipped.add(item);
 
@@ -172,7 +175,7 @@ public class CharStatEnhancer {
         adjustMP();
         adjustStr();
         System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength",
-                getHP(), getMP(), getStr());
+                getHP(), getMP(), getStr()); // adjust the stats and ensure that they properly calculate
     }
 
 

@@ -27,7 +27,7 @@ public class Loot {
     }
     public void loot() {
         if (mEnemyDifficulty.equalsIgnoreCase("hard")) {
-            randGold = randNum.nextInt(100) + 50;
+            randGold = randNum.nextInt(100) + 50; // adjust the loot if the enemy is in the hard category
 
         }
         else {
@@ -50,7 +50,7 @@ public class Loot {
         System.out.printf("Congratulations you found a %s \n", mFoundItem.getName());
         if (rareItemChance > 65) {
             System.out.printf("What luck!! You've found a rare item %s \n", mRareItem.getName());
-            possessedItems.add(mRareItem);
+            possessedItems.add(mRareItem); // if the enemy is from the hard class drop a rare item
         }
 
 

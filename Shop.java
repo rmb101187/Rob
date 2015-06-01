@@ -34,7 +34,7 @@ public class Shop {
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
-            storeItems.put(item.getName(), item);
+            storeItems.put(item.getName(), item); // list items in the game that the shop can sell. Any general item
         }
         String buyChoice = sc.nextLine();
         String buyChoiceToLower = buyChoice.toLowerCase();
@@ -53,7 +53,7 @@ public class Shop {
                 try {
                     possessedItems.add(item);
                 } catch (NullPointerException itemNotFound) {
-                    System.out.println("That item was not found, please try again");
+                    System.out.println("That item was not found, please try again"); // error handling
                     buyItem();
                 }
                 if (mGoldCount <= item.getValue()) {
@@ -94,7 +94,7 @@ public class Shop {
         String sellChoice = sc.nextLine();
         String sellChoiceToLower = sellChoice.toLowerCase();
         try {
-            item = characterItemList.get(sellChoiceToLower);
+            item = characterItemList.get(sellChoiceToLower); // get the item from the String represenation of it
 
         System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
         } catch (NullPointerException itemNotFound) {
@@ -111,7 +111,7 @@ public class Shop {
                 possessedItems.remove(item);
             } catch (NullPointerException error) {
                 error.printStackTrace();
-            }
+            } // sell the item for .75 worth of value, remove the item from the list of Possessed items
 
 
 

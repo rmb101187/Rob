@@ -25,5 +25,5 @@ public class SkillBook {
     }
     public String getSkillList() {
         return mSkillList;
-    }
+    }  // returns a string of each skill available to the class
 }

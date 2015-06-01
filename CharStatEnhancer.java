@@ -82,11 +82,7 @@ public class CharStatEnhancer {
     }
 
     public void itemByCategory() {
-        mEquippableItems = new ArrayList<>();
-        mCharacterItems = Item.createItemList();
-        mCategoryMap = new TreeMap<>();
-        mEquippableItems = createEquippableList();
-        mEquippedItems = new HashMap<>();
+
         createEquippableList();
         System.out.println("What equipment slot would you like to view \n"); // ask the user what category of equipment
         String equipmentSlot = CharBuilder.sc.nextLine();
@@ -106,7 +102,7 @@ public class CharStatEnhancer {
             showList("feet");
             equipItem(); // equip the item and add it to list of equipped items
         }
-        adjustStats();
+
     }
 
     public void showList(String itemType) {
@@ -115,26 +111,56 @@ public class CharStatEnhancer {
         there is no confusion of trying to equip a an item in the wrong slot */
     }
 
-    public Map<String, Item> equipItem() {
+    public Map<String, Item> equipItem() throws NullPointerException {
         for (Item item : mEquippableItems) {
             mEquippedItems.put(item.getName(), item);
         }
         System.out.println("Would you like to equip one of these items? \n");
         String equipAnswer = CharBuilder.sc.nextLine();
-        if (equipAnswer.equalsIgnoreCase("yes")) {
-            System.out.println("Which item would you like to equip");
-            String equipChoice = CharBuilder.sc.nextLine();
-            String equipChoiceLower = equipChoice.toLowerCase();
-            item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
-            mEquippedItems.put(item.getName(), item);
-            mCurrentlyEquipped.add(item);
+        String validEquipAnswer = "yes no";
+        boolean isValidEquipAnswer = validEquipAnswer.contains(validEquipAnswer.toLowerCase());
+        do {
+            if (equipAnswer.equalsIgnoreCase("yes")) {
+                System.out.println("Which item would you like to equip");
+                String equipChoice = CharBuilder.sc.nextLine();
+                String equipChoiceLower = equipChoice.toLowerCase();
+                try {
+                    item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
+                    mEquippedItems.put(item.getName(), item);
+                    mCurrentlyEquipped.add(item);
+                } catch (NullPointerException itemNotFound) {
+                    System.out.println("Sorry this item was not found, please try again");
+
+                }
 
 
-        }
-        else {
-            System.out.println("Sorry, please choose yes or no");
-            equipItem();
-        }
+            }
+            else if (equipAnswer.equalsIgnoreCase("no")) {
+                System.out.println("Very well, do you want to equip an answer of another slot?");
+                String continueToEquip = CharBuilder.sc.nextLine();
+                String validContinueToEquipResponse = "yes no";
+                boolean isValidContinueToEquipResponse =
+                        validContinueToEquipResponse.contains(continueToEquip.toLowerCase());
+                do {
+                    if (continueToEquip.equalsIgnoreCase("yes")) {
+                        setStats();
+                    }
+                    else if (continueToEquip.equalsIgnoreCase("no")) {
+                        break;
+                    }
+                    else {
+                        System.out.println("Sorry, please choose yes or no");
+                        equipItem();
+
+                    }
+                } while(!isValidContinueToEquipResponse);
+            }
+
+            else {
+                System.out.println("Sorry, please choose yes or no");
+                equipItem();
+            }
+        } while (!isValidEquipAnswer);
 
         System.out.println("You currently have the following items equipped");
         for (Item item : mCurrentlyEquipped) {
@@ -144,9 +170,21 @@ public class CharStatEnhancer {
         System.out.println("\n");
         System.out.println("Would you like to equip another item?");
         String equipAgain = CharBuilder.sc.nextLine();
-        if (equipAgain.equalsIgnoreCase("yes")) {
-            itemByCategory();
-        }
+        String validDecision = "yes no";
+
+        boolean isValidDecision =validDecision.contains(validDecision.toLowerCase());
+
+        do {
+            if (equipAgain.equalsIgnoreCase("yes")) {
+                itemByCategory();
+            }
+
+            if (equipAgain.equalsIgnoreCase("no")) {
+                break;
+            } else {
+                System.out.println("Sorry, please choose yes or no");
+            }
+        } while (!isValidDecision);
         return mEquippedItems;
     }
 
@@ -176,6 +214,17 @@ public class CharStatEnhancer {
         adjustStr();
         System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength",
                 getHP(), getMP(), getStr()); // adjust the stats and ensure that they properly calculate
+    }
+
+    public void setStats() {
+        mEquippableItems = new ArrayList<>();
+        mCharacterItems = Item.createItemList();
+        mCategoryMap = new TreeMap<>();
+        mEquippableItems = createEquippableList();
+        mEquippedItems = new HashMap<>();
+        itemByCategory();
+        adjustStats();
+
     }
 
 

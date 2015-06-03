@@ -56,22 +56,45 @@ public class CharStatEnhancer {
         for (Item item : mEquippableItems) {
             if (itemCategory.equalsIgnoreCase("head") && item.getCategory().equalsIgnoreCase("head")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                System.out.printf("%s - ", item.getName());
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
             else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                System.out.printf("%s - ", item.getName());
+
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
             else if (itemCategory.equalsIgnoreCase("torso") && item.getCategory().equalsIgnoreCase("torso")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                System.out.printf("%s - ", item.getName());
+
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
             else if (itemCategory.equalsIgnoreCase("feet") && item.getCategory().equalsIgnoreCase("feet")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                System.out.printf("%s - ", item.getName());
+
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
 
@@ -136,7 +159,7 @@ public class CharStatEnhancer {
 
             }
             else if (equipAnswer.equalsIgnoreCase("no")) {
-                System.out.println("Very well, do you want to equip an answer of another slot?");
+                System.out.println("Very well, do you want to equip an item of another slot?");
                 String continueToEquip = CharBuilder.sc.nextLine();
                 String validContinueToEquipResponse = "yes no";
                 boolean isValidContinueToEquipResponse =

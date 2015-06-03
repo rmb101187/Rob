@@ -23,7 +23,7 @@ public class Shop {
 
     public Shop() {
         mGoldCount = CharacterInventory.getGold();
-        itemList = new Item("Helmet",10,0,0,0,3,10,0,true,"head").createItemList();
+        itemList = new Item("Helmet",10,0,0,0,3,10,0,true, false, "head").createItemList();
         possessedItems = CharacterInventory.getPlayersItems();
     }
 
@@ -88,7 +88,9 @@ public class Shop {
         }
         System.out.println("You have the following items to sell");
         for (Item possessedItem : possessedItems) {
-            System.out.printf("%s \n", possessedItem.getName());
+            if (!item.isEquipped()) {
+                System.out.printf("%s \n", possessedItem.getName());
+            }
         }
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();

@@ -24,7 +24,7 @@ public class Item {
     int mValue;
     String mCategory;
     boolean mIsEquipabble;
-    boolean mIsEquipped;
+    static boolean mIsEquipped;
     static List<Item> itemList;
     Map<String, Item> itemMap;
     static List<Item> rareItems;
@@ -86,6 +86,15 @@ public class Item {
         rareItems.add(GoldenSword);
 
         return rareItems; // rare Item list that has a probability to drop after each combat
+    }
+
+    static void equipItem(Item item) {
+        mIsEquipped = true;
+
+    }
+
+    static void unequipItem(Item item) {
+        mIsEquipped = false;
     }
 
 

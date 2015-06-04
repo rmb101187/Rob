@@ -15,6 +15,7 @@ public class CharStatEnhancer {
     private int mInt;
     private int mHP;
     private int mMP;
+    private int helmStats;
     List<Item> mCharacterItems;
     List<Item> mEquippableItems;
     Map<String, String> mCategoryMap;

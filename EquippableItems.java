@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by Robert on 5/21/2015.
  */
-public class CharStatEnhancer {
+public class EquippableItems {
     Shop shop = new Shop();
     List<Item> characterItems;
     private int mStr;

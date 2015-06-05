@@ -46,6 +46,10 @@ public class EquipItem {
             mFeetMP = item.getMP();
         }
     }
+
+    public void alreadyEquipped() {
+        System.out.println("You already have an item equipped, and are not able to equip another in this slot");
+    }
 }
 
 

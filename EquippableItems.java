@@ -34,14 +34,16 @@ public class EquippableItems {
 
 
     public List<Item> createEquippableList() {
-        mEquippableItems = new ArrayList<>();
-        mCharacterItems = Item.createItemList();
-        for (Item item : mCharacterItems) {
-            if (item.isEquippable()) {
-                mEquippableItems.add(item); /* creates a list to be passed in to setCategory Map so that only items that
+        try {
+            for (Item item : mCharacterItems) {
+                if (item.isEquippable()) {
+                    mEquippableItems.add(item); /* creates a list to be passed in to setCategory Map so that only items that
                 are equippable are tossed in */
 
+                }
             }
+        } catch (NullPointerException noItems) {
+
         }
 
         return mEquippableItems;
@@ -241,10 +243,21 @@ public class EquippableItems {
 
     public void setStats() {
         mEquippableItems = new ArrayList<>();
-        mCharacterItems = Item.createItemList();
+        mCharacterItems = CharacterInventory.getPlayersItems();
         mCategoryMap = new TreeMap<>();
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
+        mEquippableItems = new ArrayList<>();
+        mEquippableItems = new ArrayList<>();
+        try {
+            if (mCharacterItems.isEmpty()) {
+                System.out.println("Sorry you have no equippable items");
+                Chapter1.playChapter1();
+            }
+        } catch (NullPointerException noitems) {
+            System.out.println("Sorry you have no equippable items");
+            Chapter1.playChapter1();
+        }
         itemByCategory();
         adjustStats();
 

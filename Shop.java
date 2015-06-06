@@ -82,16 +82,24 @@ public class Shop {
         characterItemList = CharacterInventory.characterItemsAsMap();
         mGoldCount = CharacterInventory.getGold();
 
-
-        if (possessedItems.isEmpty()) {
-            System.out.println("Sorry you have no items to sell");
+        try {
+            if (possessedItems.isEmpty()) {
+                System.out.println("Sorry you have no items to sell");
+                enterShop();
+            }
+        } catch (NullPointerException noItems) {
+            System.out.println("Sorry, you have no items to sell");
             enterShop();
         }
         System.out.println("You have the following items to sell");
-        for (Item possessedItem : possessedItems) {
-            if (!item.isEquipped()) {
-                System.out.printf("%s \n", possessedItem.getName());
+        try {
+            for (Item possessedItem : possessedItems) {
+                if (!item.isEquipped()) {
+                    System.out.printf("%s \n", possessedItem.getName());
+                }
             }
+        } catch (NullPointerException noItems) {
+
         }
         System.out.println("Which item would you like to sell?");
         String sellChoice = sc.nextLine();
@@ -148,6 +156,7 @@ public class Shop {
                 sellItem();
             } else if (shopAnswer.equalsIgnoreCase("leave")) {
                 System.out.println("You leave the shop");
+                Chapter1.playChapter1();
                 break;
             }
             else if (shopAnswer.equalsIgnoreCase("leave") || shopAnswer.equalsIgnoreCase("exit")) {

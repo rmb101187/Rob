@@ -44,9 +44,13 @@ public class CharacterInventory {
         possessedItems = new ArrayList<>();
         return possessedItems;
     }
-    public static void printItemList() {
-        for (Item possessedItem : possessedItems) {
-            System.out.printf("You have the following items %s \n", possessedItem.getName());
+    public static void printItemList() throws NullPointerException {
+        try {
+            for (Item possessedItem : possessedItems) {
+                System.out.printf("You have the following items %s \n", possessedItem.getName());
+            }
+        } catch (NullPointerException noItemsFound) {
+
         }
     }
     public static List<Item> getPlayersItems() {
@@ -55,8 +59,14 @@ public class CharacterInventory {
 
     public static Map<String, Item> characterItemsAsMap() {
         characterSellableItems = new HashMap<>();
-        for (Item item : possessedItems) {
-            characterSellableItems.put(item.getName(), item);
+        try {
+            for (Item item : possessedItems) {
+                characterSellableItems.put(item.getName(), item);
+            }
+            return characterSellableItems;
+        } catch (NullPointerException noItems) {
+
+
         }
         return characterSellableItems;
     }

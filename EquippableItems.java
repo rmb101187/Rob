@@ -169,7 +169,8 @@ public class EquippableItems {
                         setStats();
                     }
                     else if (continueToEquip.equalsIgnoreCase("no")) {
-                        break;
+
+                        Chapter1.playChapter1();
                     }
                     else {
                         System.out.println("Sorry, please choose yes or no");

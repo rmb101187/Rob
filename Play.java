@@ -16,10 +16,9 @@ public class Play {
         String name = sc.nextLine();
         mCharName = name;
         System.out.printf("I see, your name is %s very well \n", name);
-        //Shop shop = new Shop();
-        CharStatEnhancer statEnhancer = new CharStatEnhancer();
 
-        statEnhancer.setStats();
+        Chapter1.playChapter1();
+
 
 
 

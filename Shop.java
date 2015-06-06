@@ -16,6 +16,7 @@ public class Shop {
     static List<Item> possessedItems;
     Map<String, Item> storeItems;
     Map<String, Item> characterItemList;
+    EquippableItems statEnhancer = new EquippableItems();
     Item item;
     String decision;
 
@@ -130,7 +131,7 @@ public class Shop {
         possessedItems = CharacterInventory.getPlayersItems();
         storeItems = new HashMap<>();
         mGoldCount = CharacterInventory.getGold();
-        String acceptableActions = "purchase shop sell leave exit";
+        String acceptableActions = "purchase shop sell leave exit equip";
         boolean isAcceptableAnswer;
         CharacterInventory.printItemList();
         do {
@@ -151,7 +152,12 @@ public class Shop {
             }
             else if (shopAnswer.equalsIgnoreCase("leave") || shopAnswer.equalsIgnoreCase("exit")) {
                 System.out.println("You leave the shop");
+                Chapter1.playChapter1();
                 break;
+            }
+            else if (shopAnswer.equalsIgnoreCase("equip")) {
+                System.out.println("Very well, you want to equip some items");
+                statEnhancer.setStats();
             }
             else {
                 System.out.println("Please choose buy, or sell, or leave to leave the shop");
@@ -162,7 +168,11 @@ public class Shop {
         } while (isAcceptableAnswer);
     }
 
+
+
     public static List<Item> getPossessedItems() {
         return possessedItems;
     }
+
+
 }

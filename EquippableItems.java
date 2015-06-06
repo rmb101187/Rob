@@ -7,7 +7,6 @@ import java.util.*;
  * Created by Robert on 5/21/2015.
  */
 public class EquippableItems {
-    Shop shop = new Shop();
     List<Item> characterItems;
     private int mStr;
     private int mDex;
@@ -198,17 +197,16 @@ public class EquippableItems {
 
         boolean isValidDecision =validDecision.contains(validDecision.toLowerCase());
 
-        do {
+        while (!isValidDecision) {
             if (equipAgain.equalsIgnoreCase("yes")) {
                 itemByCategory();
-            }
-
-            if (equipAgain.equalsIgnoreCase("no")) {
+            } else if (equipAgain.equalsIgnoreCase("no")) {
+                Chapter1.playChapter1();
                 break;
             } else {
                 System.out.println("Sorry, please choose yes or no");
             }
-        } while (!isValidDecision);
+        }
         return mEquippedItems;
     }
 

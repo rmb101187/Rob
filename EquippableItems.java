@@ -153,6 +153,7 @@ public class EquippableItems {
                     item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
                     mEquippedItems.put(item.getName(), item);
                     mCurrentlyEquipped.add(item);
+                    Item.equipItem(item);
                 } catch (NullPointerException itemNotFound) {
                     System.out.println("Sorry this item was not found, please try again");
 

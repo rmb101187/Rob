@@ -18,6 +18,7 @@ public class Loot {
     private List<Item> rareItems;
     Item mRareItem;
     Item mFoundItem;
+    int rareItemChance;
 
 
     public  Loot(Enemy enemy,String enemyName, String enemyDifficulty ) {
@@ -28,6 +29,7 @@ public class Loot {
     public void loot() {
         if (mEnemyDifficulty.equalsIgnoreCase("hard")) {
             randGold = randNum.nextInt(100) + 50; // adjust the loot if the enemy is in the hard category
+            rareItemChance += 10;
 
         }
         else {
@@ -46,9 +48,9 @@ public class Loot {
         mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
         mRareItem = rareItems.get(randNum.nextInt(rareItems.size()));
         possessedItems.add(mFoundItem);
-        int rareItemChance = randNum.nextInt(100);
+        rareItemChance = randNum.nextInt(100);
         System.out.printf("Congratulations you found a %s \n", mFoundItem.getName());
-        if (rareItemChance > 65) {
+        if (rareItemChance > 75) {
             System.out.printf("What luck!! You've found a rare item %s \n", mRareItem.getName());
             CharacterInventory.addPossessedItems(mRareItem); // if the enemy is from the hard class drop a rare item
         }

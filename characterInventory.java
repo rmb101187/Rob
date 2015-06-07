@@ -14,6 +14,7 @@ public class CharacterInventory {
     private Item mItem;
     static private double mGoldCount;
     static private Map<String, Item> characterSellableItems;
+
     List<Item> test;
     Item item;
 
@@ -70,6 +71,8 @@ public class CharacterInventory {
         }
         return characterSellableItems;
     }
+
+
 
     public static void addPossessedItems(Item item) {
         possessedItems.add(item); // allows both the combat class and shop class to add the PossesedItems list

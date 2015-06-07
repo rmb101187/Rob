@@ -16,7 +16,6 @@ public class Shop {
     static List<Item> possessedItems;
     Map<String, Item> storeItems;
     Map<String, Item> characterItemList;
-    EquippableItems statEnhancer = new EquippableItems();
     Item item;
     String decision;
 
@@ -52,7 +51,7 @@ public class Shop {
 
             if (decision.equalsIgnoreCase("yes")) {
                 try {
-                    possessedItems.add(item);
+                    CharacterInventory.addPossessedItems(item);
                 } catch (NullPointerException itemNotFound) {
                     System.out.println("That item was not found, please try again"); // error handling
                     buyItem();
@@ -137,7 +136,7 @@ public class Shop {
     }
     public void enterShop() {
         possessedItems = CharacterInventory.getPlayersItems();
-        storeItems = new HashMap<>();
+        storeItems = Item.shopItems();
         mGoldCount = CharacterInventory.getGold();
         String acceptableActions = "purchase shop sell leave exit equip";
         boolean isAcceptableAnswer;
@@ -164,10 +163,7 @@ public class Shop {
                 Chapter1.playChapter1();
                 break;
             }
-            else if (shopAnswer.equalsIgnoreCase("equip")) {
-                System.out.println("Very well, you want to equip some items");
-                statEnhancer.setStats();
-            }
+
             else {
                 System.out.println("Please choose buy, or sell, or leave to leave the shop");
 

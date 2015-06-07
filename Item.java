@@ -26,7 +26,7 @@ public class Item {
     boolean mIsEquipabble;
     static boolean mIsEquipped;
     static List<Item> itemList;
-    Map<String, Item> itemMap;
+    static Map<String, Item> itemMap;
     static List<Item> rareItems;
 
 
@@ -68,7 +68,7 @@ public class Item {
         return itemList; // static variable tp be passed to many classes
     }
 
-    public Map<String, Item> shopItems() {
+    public static Map<String, Item> shopItems() {
         itemMap = new HashMap<>();
         for (Item item : itemList) {
             itemMap.put(item.getName(), item);

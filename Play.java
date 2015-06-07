@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Play {
     Scanner sc = CharBuilder.sc;
     String mCharName;
-    List<Item> possesedItems = CharacterInventory.getPlayersItems();
     Shop shop = new Shop();
 
     public void Begin() {

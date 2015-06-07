@@ -11,6 +11,7 @@ import java.util.*;
 public class Shop {
 
     Scanner sc = CharBuilder.sc;
+    CharacterInventory charInv = new CharacterInventory();
 
     private double mGoldCount;
     List<Item> itemList;
@@ -38,12 +39,18 @@ public class Shop {
             System.out.printf("%s : %dgp \n", item.getName(), item.getValue());
             storeItems.put(item.getName(), item); // list items in the game that the shop can sell. Any general item
         }
+        if (storeItems.containsKey("sword")) {
+            System.out.println("Sword is contained");
+        }
+        else {
+            System.out.println("Woah, we got a fucking problem here");
+        }
         String buyChoice = sc.nextLine();
         String buyChoiceToLower = buyChoice.toLowerCase();
         try {
             itemToBuy = storeItems.get(buyChoiceToLower);
 
-            System.out.printf("so you want to buy the %s for %d \n", item.getName(), item.getValue());
+            System.out.printf("so you want to buy the %s for %d \n", itemToBuy.getName(), itemToBuy.getValue());
             decision = sc.nextLine();
         }catch(NullPointerException DoesNotExist){
             System.out.println("This item does not exist, please try again");
@@ -58,21 +65,38 @@ public class Shop {
                     System.out.println("That item was not found, please try again"); // error handling
                     buyItem();
                 }
-                if (mGoldCount <= item.getValue()) {
+                if (mGoldCount <= itemToBuy.getValue()) {
                     System.out.printf("Sorry you do not have enough gold your current goldCount is %.2f gold \n",
                             mGoldCount);
 
                 } else {
-                    mGoldCount -= item.getValue();
-                    System.out.printf("You bought the %s, this leaves you with %.2f gold \n", item.getName(),
-                            mGoldCount);
+                    CharacterInventory.setGold(mGoldCount - itemToBuy.getValue());
+                    System.out.printf("You bought the %s, this leaves you with %.2f gold \n", itemToBuy.getName(),
+                            CharacterInventory.getGold());
                     try {
                         for (Item possedItem : possessedItems) {
-                            System.out.printf("You have the following items %s \n", item.getName());
+                            System.out.printf("You have the following items %s \n", itemToBuy.getName());
+                            System.out.println("Do you wish to remain in the shop?");
+                            String remainInShop = CharBuilder.sc.nextLine();
+                            String remainInShopAcceptable = "yes no";
+                            boolean isAcceptableRemainInShop =remainInShop.contains(remainInShopAcceptable);
+                            do {
+                                if (remainInShop.equalsIgnoreCase("yes")) {
+                                    enterShop();
+                                }
+                                else if (remainInShop.equalsIgnoreCase("no")) {
+                                    Chapter1.playChapter1();
+                                }
+                                else {
+                                    System.out.println("please choose yes or no");
+                                    enterShop();
+                                }
+
+                            } while (!isAcceptableRemainInShop);
 
                         }
                     } catch (NullPointerException itemNotFound) {
-                        CharacterInventory.printItemList();
+
                     }
                 }
             } else  {
@@ -124,8 +148,9 @@ public class Shop {
         if (decision.equalsIgnoreCase("yes")) {
 
             try {
-                mGoldCount += item.getValue();
-                System.out.printf("You sold the item %s, your current gold count is %.2f \n", item.getName(), mGoldCount);
+                CharacterInventory.setGold(mGoldCount + (item.getValue() * .75));
+                System.out.printf("You sold the item %s, your current gold count is %.2f \n", item.getName(),
+                        CharacterInventory.getGold());
                 possessedItems.remove(item);
             } catch (NullPointerException error) {
                 error.printStackTrace();
@@ -144,11 +169,10 @@ public class Shop {
     }
     public void enterShop() {
         possessedItems = CharacterInventory.getPlayersItems();
-        storeItems = Item.shopItems();
+        storeItems = new HashMap<>();
         mGoldCount = CharacterInventory.getGold();
         String acceptableActions = "purchase shop sell leave exit equip";
         boolean isAcceptableAnswer;
-        CharacterInventory.printItemList();
         do {
 
             System.out.println("You enter the shop, do you wish to browse items for purchase, " +
@@ -174,6 +198,7 @@ public class Shop {
 
             else {
                 System.out.println("Please choose buy, or sell, or leave to leave the shop");
+                enterShop();
 
 
 

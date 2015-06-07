@@ -10,9 +10,9 @@ import java.util.Map;
  */
 public class CharacterInventory {
     static public List<Item> mCharacterInventory;
-    static public List<Item> possessedItems;
+    static public List<Item> possessedItems = new ArrayList<>();
     private Item mItem;
-    static private double mGoldCount;
+    static private double mGoldCount = 1000;
     static private Map<String, Item> characterSellableItems;
 
 

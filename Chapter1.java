@@ -6,6 +6,7 @@ package com.company;
 public class Chapter1 {
 
     static EquippableItems statEnhancer = new EquippableItems();
+    static Shop shop = new Shop();
 
 
     public static void playChapter1() {
@@ -19,7 +20,7 @@ public class Chapter1 {
         while (!decision1Accpetable) {
             if (decision1.equalsIgnoreCase("shop") || decision1.equalsIgnoreCase("purchase")) {
 
-                //shop.enterShop();
+                shop.enterShop();
             }
 
             else if (decision1.equalsIgnoreCase("cave") || decision1.equalsIgnoreCase("adventure")) {

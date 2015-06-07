@@ -15,12 +15,13 @@ public class CharacterInventory {
     static private double mGoldCount;
     static private Map<String, Item> characterSellableItems;
 
+
     List<Item> test;
     Item item;
 
     public CharacterInventory() {
         mGoldCount = 1000;
-        possessedItems = new ArrayList<>();
+
     }
 
 
@@ -46,7 +47,12 @@ public class CharacterInventory {
         return possessedItems;
     }
     public static void printItemList() throws NullPointerException {
+
+
         try {
+            if (possessedItems.isEmpty()) {
+                System.out.println("You have no possessed items");
+            }
             for (Item possessedItem : possessedItems) {
                 System.out.printf("You have the following items %s \n", possessedItem.getName());
             }

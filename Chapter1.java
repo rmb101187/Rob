@@ -4,7 +4,7 @@ package com.company;
  * Created by Robert on 6/6/2015.
  */
 public class Chapter1 {
-    static Shop shop = new Shop();
+
     static EquippableItems statEnhancer = new EquippableItems();
 
 
@@ -19,7 +19,7 @@ public class Chapter1 {
         while (!decision1Accpetable) {
             if (decision1.equalsIgnoreCase("shop") || decision1.equalsIgnoreCase("purchase")) {
 
-                shop.enterShop();
+                //shop.enterShop();
             }
 
             else if (decision1.equalsIgnoreCase("cave") || decision1.equalsIgnoreCase("adventure")) {

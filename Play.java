@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Play {
     Scanner sc = CharBuilder.sc;
     String mCharName;
-    List<Item> possedItems = CharacterInventory.possessedItems;
+    List<Item> possesedItems = CharacterInventory.getPlayersItems();
+    Shop shop = new Shop();
 
     public void Begin() {
         System.out.println("Greetings hero, what is your name?");
@@ -17,7 +18,8 @@ public class Play {
         mCharName = name;
         System.out.printf("I see, your name is %s very well \n", name);
 
-        Chapter1.playChapter1();
+
+
 
 
 
@@ -27,7 +29,7 @@ public class Play {
 
         //Combat combat = new Combat();
         //combat.combat();
-        //shop.enterShop();
+        shop.enterShop();
 
 
 

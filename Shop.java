@@ -11,6 +11,7 @@ import java.util.*;
 public class Shop {
 
     Scanner sc = CharBuilder.sc;
+
     private double mGoldCount;
     List<Item> itemList;
     static List<Item> possessedItems;
@@ -18,6 +19,7 @@ public class Shop {
     Map<String, Item> characterItemList;
     Item item;
     String decision;
+    Item itemToBuy;
 
 
 
@@ -29,7 +31,7 @@ public class Shop {
 
 
     public void buyItem  () throws NullPointerException  {
-        possessedItems = CharacterInventory.getPlayersItems();
+
 
         System.out.println("The shop has the following items for sale at the current price");
         for (Item item : itemList) {
@@ -39,7 +41,7 @@ public class Shop {
         String buyChoice = sc.nextLine();
         String buyChoiceToLower = buyChoice.toLowerCase();
         try {
-            item = storeItems.get(buyChoiceToLower);
+            itemToBuy = storeItems.get(buyChoiceToLower);
 
             System.out.printf("so you want to buy the %s for %d \n", item.getName(), item.getValue());
             decision = sc.nextLine();
@@ -51,7 +53,7 @@ public class Shop {
 
             if (decision.equalsIgnoreCase("yes")) {
                 try {
-                    CharacterInventory.addPossessedItems(item);
+                    CharacterInventory.addPossessedItems(itemToBuy);
                 } catch (NullPointerException itemNotFound) {
                     System.out.println("That item was not found, please try again"); // error handling
                     buyItem();
@@ -64,12 +66,18 @@ public class Shop {
                     mGoldCount -= item.getValue();
                     System.out.printf("You bought the %s, this leaves you with %.2f gold \n", item.getName(),
                             mGoldCount);
-                    for (Item possedItem : possessedItems) {
-                        System.out.printf("You have the following items %s \n", item.getName());
+                    try {
+                        for (Item possedItem : possessedItems) {
+                            System.out.printf("You have the following items %s \n", item.getName());
+
+                        }
+                    } catch (NullPointerException itemNotFound) {
+                        CharacterInventory.printItemList();
                     }
                 }
-            } else {
+            } else  {
                 System.out.println("I understand, maybe some other time");
+
             }
 
 
@@ -77,7 +85,7 @@ public class Shop {
 
 
     public void sellItem() {
-        possessedItems = CharacterInventory.getPlayersItems();
+
         characterItemList = CharacterInventory.characterItemsAsMap();
         mGoldCount = CharacterInventory.getGold();
 

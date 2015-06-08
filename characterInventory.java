@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class CharacterInventory {
     static public List<Item> mCharacterInventory;
-    static public List<Item> possessedItems = new ArrayList<>();
+    static public List<Item> possessedItems;
     private Item mItem;
     static private double mGoldCount = 1000;
     static private Map<String, Item> characterSellableItems;
@@ -61,6 +61,9 @@ public class CharacterInventory {
         }
     }
     public static List<Item> getPlayersItems() {
+        if (possessedItems == null) {
+            possessedItems = new ArrayList<>();
+        }
         return possessedItems;
     }
 

@@ -81,6 +81,12 @@ public class CharacterInventory {
         return characterSellableItems;
     }
 
+    public static void printPossessedItems() {
+        for (Item item : possessedItems) {
+            System.out.printf("s -", item.getName());
+        }
+    }
+
 
 
     public static void addPossessedItems(Item item) {

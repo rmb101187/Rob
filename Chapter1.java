@@ -24,7 +24,7 @@ public class Chapter1 {
             }
 
             else if (decision1.equalsIgnoreCase("cave") || decision1.equalsIgnoreCase("adventure")) {
-                //enterCave();
+                enterCave();
             }
             else if (decision1.equalsIgnoreCase("equip") || decision1.equalsIgnoreCase("home")) {
                 statEnhancer.setStats();
@@ -33,9 +33,16 @@ public class Chapter1 {
             else {
                 System.out.println("Sorry, please choose to either explore the cave, enter the shop, or equip items at " +
                         "your home");
+                playChapter1();
             }
 
 
         }
+    }
+
+    public static void enterCave() {
+        System.out.println("You enter teh cave, there appears to be just enough to light to see that that there is a " +
+                "path that leads to the left, and one to the right which way do you take");
+
     }
 }

@@ -125,9 +125,9 @@ public class Shop {
         System.out.println("You have the following items to sell");
         try {
             for (Item possessedItem : possessedItems) {
-                if (!item.isEquipped()) {
+                    if (Item.mIsEquipped == false)
                     System.out.printf("%s \n", possessedItem.getName());
-                }
+
             }
         } catch (NullPointerException noItems) {
 
@@ -154,17 +154,15 @@ public class Shop {
                 possessedItems.remove(item);
             } catch (NullPointerException error) {
                 error.printStackTrace();
-            } // sell the item for .75 worth of value, remove the item from the list of Possessed items
-
-
-
-
-
-
-
+            }
+            }
+        else if (decision.equalsIgnoreCase("no")) {
+            System.out.println("Very well, some other time");
+            enterShop();
         }
+
         else {
-            System.out.println("I understand, maybe some other time");
+            System.out.println("Sorry, please choose yes or no");
         }
     }
     public void enterShop() {

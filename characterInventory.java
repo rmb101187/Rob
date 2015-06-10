@@ -87,6 +87,13 @@ public class CharacterInventory {
         }
     }
 
+    public List<Item> nonStaticReturn() {
+        if (possessedItems == null) {
+            possessedItems = new ArrayList<>();
+        }
+        return possessedItems;
+    }
+
 
 
     public static void addPossessedItems(Item item) {

@@ -3,6 +3,7 @@ package com.company;
 import java.util.*;
 
 
+
 /**
  * Created by Robert on 5/21/2015.
  */
@@ -15,6 +16,8 @@ public class EquippableItems {
     private int mHP;
     private int mMP;
     private int helmStats;
+
+    Chapter1 chap1;
     List<Item> mCharacterItems;
     List<Item> mEquippableItems;
     Map<String, String> mCategoryMap;
@@ -25,6 +28,7 @@ public class EquippableItems {
     private boolean torsoEquipped;
     private boolean feetEquipped;
     Item item;
+
 
 
 
@@ -173,7 +177,7 @@ public class EquippableItems {
                     }
                     else if (continueToEquip.equalsIgnoreCase("no")) {
 
-                        Chapter1.playChapter1();
+                        chap1.playChapter1();
                     }
                     else {
                         System.out.println("Sorry, please choose yes or no");
@@ -205,7 +209,7 @@ public class EquippableItems {
             if (equipAgain.equalsIgnoreCase("yes")) {
                 itemByCategory();
             } else if (equipAgain.equalsIgnoreCase("no")) {
-                Chapter1.playChapter1();
+                chap1.playChapter1();
                 break;
             } else {
                 System.out.println("Sorry, please choose yes or no");
@@ -253,12 +257,13 @@ public class EquippableItems {
         try {
             if (mCharacterItems.isEmpty()) {
                 System.out.println("Sorry you have no equippable items");
-                Chapter1.playChapter1();
+                chap1.playChapter1();
             }
         } catch (NullPointerException noitems) {
             System.out.println("Sorry you have no equippable items");
-            Chapter1.playChapter1();
+            chap1.playChapter1();
         }
+
         itemByCategory();
         adjustStats();
 

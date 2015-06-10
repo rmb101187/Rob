@@ -11,7 +11,7 @@ import java.util.*;
 public class Shop {
 
     Scanner sc = CharBuilder.sc;
-    CharacterInventory charInv = new CharacterInventory();
+    CharacterInventory charInv;
 
     private double mGoldCount;
     List<Item> itemList;
@@ -58,51 +58,51 @@ public class Shop {
         }
 
 
-            if (decision.equalsIgnoreCase("yes")) {
+        if (decision.equalsIgnoreCase("yes")) {
+            try {
+                CharacterInventory.addPossessedItems(itemToBuy);
+            } catch (NullPointerException itemNotFound) {
+                System.out.println("That item was not found, please try again"); // error handling
+                buyItem();
+            }
+            if (mGoldCount <= itemToBuy.getValue()) {
+                System.out.printf("Sorry you do not have enough gold your current goldCount is %.2f gold \n",
+                        mGoldCount);
+
+            } else {
+                CharacterInventory.setGold(mGoldCount - itemToBuy.getValue());
+                System.out.printf("You bought the %s, this leaves you with %.2f gold \n", itemToBuy.getName(),
+                        CharacterInventory.getGold());
                 try {
-                    CharacterInventory.addPossessedItems(itemToBuy);
-                } catch (NullPointerException itemNotFound) {
-                    System.out.println("That item was not found, please try again"); // error handling
-                    buyItem();
-                }
-                if (mGoldCount <= itemToBuy.getValue()) {
-                    System.out.printf("Sorry you do not have enough gold your current goldCount is %.2f gold \n",
-                            mGoldCount);
+                    for (Item possedItem : possessedItems) {
+                        System.out.printf("You have the following items %s \n", itemToBuy.getName());
+                        System.out.println("Do you wish to remain in the shop?");
+                        String remainInShop = CharBuilder.sc.nextLine();
+                        String remainInShopAcceptable = "yes no";
+                        boolean isAcceptableRemainInShop =remainInShop.contains(remainInShopAcceptable);
+                        do {
+                            if (remainInShop.equalsIgnoreCase("yes")) {
+                                enterShop();
+                            }
+                            else if (remainInShop.equalsIgnoreCase("no")) {
+                                Chapter1.playChapter1();
+                            }
+                            else {
+                                System.out.println("please choose yes or no");
+                                enterShop();
+                            }
 
-                } else {
-                    CharacterInventory.setGold(mGoldCount - itemToBuy.getValue());
-                    System.out.printf("You bought the %s, this leaves you with %.2f gold \n", itemToBuy.getName(),
-                            CharacterInventory.getGold());
-                    try {
-                        for (Item possedItem : possessedItems) {
-                            System.out.printf("You have the following items %s \n", itemToBuy.getName());
-                            System.out.println("Do you wish to remain in the shop?");
-                            String remainInShop = CharBuilder.sc.nextLine();
-                            String remainInShopAcceptable = "yes no";
-                            boolean isAcceptableRemainInShop =remainInShop.contains(remainInShopAcceptable);
-                            do {
-                                if (remainInShop.equalsIgnoreCase("yes")) {
-                                    enterShop();
-                                }
-                                else if (remainInShop.equalsIgnoreCase("no")) {
-                                    Chapter1.playChapter1();
-                                }
-                                else {
-                                    System.out.println("please choose yes or no");
-                                    enterShop();
-                                }
-
-                            } while (!isAcceptableRemainInShop);
-
-                        }
-                    } catch (NullPointerException itemNotFound) {
+                        } while (!isAcceptableRemainInShop);
 
                     }
-                }
-            } else  {
-                System.out.println("I understand, maybe some other time");
+                } catch (NullPointerException itemNotFound) {
 
+                }
             }
+        } else  {
+            System.out.println("I understand, maybe some other time");
+
+        }
 
 
     }
@@ -125,7 +125,7 @@ public class Shop {
         System.out.println("You have the following items to sell");
         try {
             for (Item possessedItem : possessedItems) {
-                    if (Item.mIsEquipped == false)
+                if (Item.mIsEquipped == false)
                     System.out.printf("%s \n", possessedItem.getName());
 
             }
@@ -138,10 +138,10 @@ public class Shop {
         try {
             item = characterItemList.get(sellChoiceToLower); // get the item from the String represenation of it
 
-        System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
+            System.out.printf("so you want to sell the %s for %.2f \n", item.getName(), item.getValue() * .75);
         } catch (NullPointerException itemNotFound) {
-        System.out.println("Sorry, this item was not found, please try again");
-        sellItem();
+            System.out.println("Sorry, this item was not found, please try again");
+            sellItem();
         }
         decision  = sc.nextLine();
 
@@ -155,7 +155,7 @@ public class Shop {
             } catch (NullPointerException error) {
                 error.printStackTrace();
             }
-            }
+        }
         else if (decision.equalsIgnoreCase("no")) {
             System.out.println("Very well, some other time");
             enterShop();

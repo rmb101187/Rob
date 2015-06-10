@@ -13,6 +13,7 @@ public class Loot {
     private String mEnemyName;
     private String mEnemyDifficulty;
     static double mGoldLooted;
+
     private List<Item> availableItems;
     private List<Item> possessedItems;
     private List<Item> rareItems;

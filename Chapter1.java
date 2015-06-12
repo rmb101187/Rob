@@ -7,6 +7,7 @@ public class Chapter1 {
 
     static EquippableItems statEnhancer = new EquippableItems();
     static Shop shop = new Shop();
+    static Combat combat = new Combat();
 
 
     public static void playChapter1() {
@@ -31,6 +32,7 @@ public class Chapter1 {
 
             }
             else {
+
                 System.out.println("Sorry, please choose to either explore the cave, enter the shop, or equip items at " +
                         "your home");
                 playChapter1();
@@ -44,6 +46,10 @@ public class Chapter1 {
         System.out.println("You enter teh cave, there appears to be just enough to light to see that that there is a " +
                 "path that leads to the left, and one to the right which way do you take");
         String firstChoice = CharBuilder.sc.nextLine();
+        if (firstChoice.equalsIgnoreCase("left")) {
+            System.out.println("Oh no you run into some monters!");
+            combat.combat();
+        }
 
     }
 }

@@ -43,6 +43,7 @@ public class Chapter1 {
     public static void enterCave() {
         System.out.println("You enter teh cave, there appears to be just enough to light to see that that there is a " +
                 "path that leads to the left, and one to the right which way do you take");
+        String firstChoice = CharBuilder.sc.nextLine();
 
     }
 }

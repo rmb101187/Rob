@@ -11,6 +11,7 @@ public class Chapter1 {
 
 
     public static void playChapter1() {
+
         System.out.println("Welcome, adventurer, you enter the town, there is your home  where you may equip your items, " +
                 " a shop where you may sell and buy gear, and a cave to to begin your adventure, where would you like " +
                 "to go?");

@@ -8,24 +8,25 @@ public class Combat  {
     Scanner sc = CharBuilder.sc;
     static Random randNum = new Random();
     EquippableItems equipItems;
-    List<Enemy> enemyList = new Enemy().createListA();
-    Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
-    Play play = new Play();
-    CharBuilder character = play.returnHero();
+    List<Enemy> enemyList;
+    Enemy enemy;
+    CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
     SkillBook skillBook = new SkillBook().createSkillList(character.getCharClass());
-    int mCharStrength= character.getStrength();
-    int mCharHitpoints= character.getHP();
-    int mEnemyHitpoints= enemy.getHP();
-    int mEnemyStr= enemy.getStr();
-    int mCharManaPoints= character.getMP();
-    private String mEnemyDifficulty = enemy.getDifficulty();
-    String mEnemyName = enemy.getName();
-    private String mSkillList = skillBook.getSkillList();
+    int mCharStrength;
+    int mCharHitpoints;
+    int mEnemyHitpoints;
+    int mEnemyStr;
+    int mCharManaPoints;
+    private String mEnemyDifficulty;
+    String mEnemyName;
+    private String mSkillList;
     private int mManaCost;
     private int mSkillDamage;
     private String mCharClass;
 
     Loot loot;
+
+
 
 
 
@@ -69,6 +70,23 @@ public class Combat  {
 
     }
     public void combat() {
+
+        EquippableItems equipItems;
+         enemyList = new Enemy().createListA();
+         enemy = enemyList.get(randNum.nextInt(enemyList.size()));
+         mCharStrength= character.getStrength();
+         mCharHitpoints= character.getHP();
+         mEnemyHitpoints= enemy.getHP();
+         mEnemyStr= enemy.getStr();
+         mCharManaPoints= character.getMP();
+         String mEnemyDifficulty = enemy.getDifficulty();
+        mEnemyName = enemy.getName();
+        mSkillList = skillBook.getSkillList();
+        int mManaCost;
+        int mSkillDamage;
+        String mCharClass;
+
+
         loot = new Loot(enemy, mEnemyName, enemy.getDifficulty());
         initiateCombat();
         do {
@@ -212,6 +230,11 @@ public class Combat  {
             System.out.printf("You use the %s skill, you do %d damage and the enemy has %d hitpoints left, \n",
                     skillName, mSkillDamage, mEnemyHitpoints);
             }
+    }
+
+    public void newCombat() {
+        enemy =enemyList.get(randNum.nextInt(enemyList.size()));
+        initiateCombat();
     }
 
     public Enemy slainEnemy() {

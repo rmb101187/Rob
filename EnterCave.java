@@ -6,7 +6,7 @@ package com.company;
 public class EnterCave {
 
     boolean choice1leftExplored;
-    boolean hasKey1;
+    boolean choice1rightExplored;
     Combat combat = new Combat();
 
     public void enterCave() {
@@ -22,8 +22,16 @@ public class EnterCave {
             firstRoomleft();
 
         }
-        else if (firstChoice.equalsIgnoreCase("right")); {
+        else if (firstChoice.equalsIgnoreCase("right")) {
+            if (choice1rightExplored) {
+                System.out.println("You have already explored this room");
+                enterCave();
+            }
             firstRoomright();
+        }
+
+        else {
+            System.out.println("Sorry, please choose left or right");
         }
     }
 
@@ -32,14 +40,15 @@ public class EnterCave {
         System.out.println("Oh no you run into some monters!");
         combat.combat();
         choice1leftExplored = true;
-        hasKey1 = true;
+
     }
 
     public void firstRoomright() {
-        combat.combat();
         System.out.println("You found an empty room with a skeleton with a arrow stick in it's check YIKES! \n");
         System.out.println("There also appears to be a key clutched in his hand, you rip it off, but a combat ensues!");
         combat.combat();
+        choice1rightExplored = true;
+
     }
 
 

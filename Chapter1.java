@@ -7,8 +7,7 @@ public class Chapter1 {
 
     static EquippableItems statEnhancer = new EquippableItems();
     static Shop shop = new Shop();
-    static Combat combat = new Combat();
-    boolean choice1leftExplored;
+    static EnterCave cave = new EnterCave();
 
 
     public static void playChapter1() {
@@ -23,16 +22,12 @@ public class Chapter1 {
             if (decision1.equalsIgnoreCase("shop") || decision1.equalsIgnoreCase("purchase")) {
 
                 shop.enterShop();
-            }
-
-            else if (decision1.equalsIgnoreCase("cave") || decision1.equalsIgnoreCase("adventure")) {
-                enterCave();
-            }
-            else if (decision1.equalsIgnoreCase("equip") || decision1.equalsIgnoreCase("home")) {
+            } else if (decision1.equalsIgnoreCase("cave") || decision1.equalsIgnoreCase("adventure")) {
+                cave.enterCave();
+            } else if (decision1.equalsIgnoreCase("equip") || decision1.equalsIgnoreCase("home")) {
                 statEnhancer.setStats();
 
-            }
-            else {
+            } else {
 
                 System.out.println("Sorry, please choose to either explore the cave, enter the shop, or equip items at " +
                         "your home");
@@ -41,27 +36,12 @@ public class Chapter1 {
 
 
         }
-    }
 
-    public static void enterCave() {
-        System.out.println("You enter teh cave, there appears to be just enough to light to see that that there is a " +
-                "path that leads to the left, and one to the right which way do you take");
-        String firstChoice = CharBuilder.sc.nextLine();
-
-        if (firstChoice.equalsIgnoreCase("left")) {
-
-           firstChoiceleft();
-
-        }
-        else if (firstChoice.equalsIgnoreCase("right")); {
-            System.out.println("You found an empty room with a skeleton with a arrow stick in it's check YIKES!");
-        }
-    }
-
-    public void firstChoiceleft() {
-        System.out.println("Oh no you run into some monters!");
-        combat.combat();
-        choice1leftExplored = true;
 
     }
+
+
+
 }
+
+

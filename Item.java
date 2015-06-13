@@ -28,6 +28,7 @@ public class Item {
     static List<Item> itemList;
     static Map<String, Item> itemMap;
     static List<Item> rareItems;
+    List<Item> nonbuyAbleItems;
 
 
 
@@ -91,6 +92,13 @@ public class Item {
     static void equipItem(Item item) {
         mIsEquipped = true;
 
+    }
+
+    List<Item> utilityItems() {
+        nonbuyAbleItems = new ArrayList<>();
+        Item key1 = new Item("first key",0,0,0,0,0,0,0,false,false,"utility");
+        Item key2 = new Item("second key",0,0,0,0,0,0,0,false,false,"utility");
+        return nonbuyAbleItems;
     }
 
     static void unequipItem(Item item) {

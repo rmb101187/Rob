@@ -7,11 +7,11 @@ import java.util.Scanner;
 public class Combat  {
     Scanner sc = CharBuilder.sc;
     static Random randNum = new Random();
-
+    EquippableItems equipItems;
     List<Enemy> enemyList = new Enemy().createListA();
     Enemy enemy = enemyList.get(randNum.nextInt(enemyList.size()));
-
-    CharBuilder character = new CharBuilder("warrior", 6, 6, 6, 6, 40, 30).createHero();
+    Play play = new Play();
+    CharBuilder character = play.returnHero();
     SkillBook skillBook = new SkillBook().createSkillList(character.getCharClass());
     int mCharStrength= character.getStrength();
     int mCharHitpoints= character.getHP();

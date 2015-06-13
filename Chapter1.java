@@ -8,6 +8,7 @@ public class Chapter1 {
     static EquippableItems statEnhancer = new EquippableItems();
     static Shop shop = new Shop();
     static Combat combat = new Combat();
+    boolean choice1leftExplored;
 
 
     public static void playChapter1() {
@@ -46,10 +47,21 @@ public class Chapter1 {
         System.out.println("You enter teh cave, there appears to be just enough to light to see that that there is a " +
                 "path that leads to the left, and one to the right which way do you take");
         String firstChoice = CharBuilder.sc.nextLine();
+
         if (firstChoice.equalsIgnoreCase("left")) {
-            System.out.println("Oh no you run into some monters!");
-            combat.combat();
+
+           firstChoiceleft();
+
         }
+        else if (firstChoice.equalsIgnoreCase("right")); {
+            System.out.println("You found an empty room with a skeleton with a arrow stick in it's check YIKES!");
+        }
+    }
+
+    public void firstChoiceleft() {
+        System.out.println("Oh no you run into some monters!");
+        combat.combat();
+        choice1leftExplored = true;
 
     }
 }

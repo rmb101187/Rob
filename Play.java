@@ -26,8 +26,7 @@ public class Play {
         Enemy enemy = new Enemy();
         enemy.createListA();
 
-        //Combat combat = new Combat();
-        //combat.combat();
+
 
 
 

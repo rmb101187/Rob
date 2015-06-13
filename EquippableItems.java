@@ -9,11 +9,11 @@ import java.util.*;
  */
 public class EquippableItems {
     List<Item> characterItems;
-    private int mStr;
+    static private int mStr;
     private int mDex;
     private int mCon;
     private int mInt;
-    private int mHP;
+    static private int mHP;
     private int mMP;
     private int helmStats;
 
@@ -173,10 +173,10 @@ public class EquippableItems {
                         validContinueToEquipResponse.contains(continueToEquip.toLowerCase());
                 do {
                     if (continueToEquip.equalsIgnoreCase("yes")) {
-                        setStats();
+                        equipItem();
                     }
                     else if (continueToEquip.equalsIgnoreCase("no")) {
-
+                        setStats();
                         chap1.playChapter1();
                     }
                     else {
@@ -207,7 +207,7 @@ public class EquippableItems {
 
         while (!isValidDecision) {
             if (equipAgain.equalsIgnoreCase("yes")) {
-                itemByCategory();
+                setStats();
             } else if (equipAgain.equalsIgnoreCase("no")) {
                 chap1.playChapter1();
                 break;
@@ -242,7 +242,7 @@ public class EquippableItems {
         adjustHP();
         adjustMP();
         adjustStr();
-        System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength",
+        System.out.printf("With your current equipment you have added %d hitpoints, %d manapoints, and %d strength \n",
                 getHP(), getMP(), getStr()); // adjust the stats and ensure that they properly calculate
     }
 
@@ -263,10 +263,20 @@ public class EquippableItems {
             System.out.println("Sorry you have no equippable items");
             chap1.playChapter1();
         }
-
+        printEquippedItems();
         itemByCategory();
         adjustStats();
+        Chapter1.playChapter1();
 
+
+    }
+
+    public void printEquippedItems() {
+        System.out.println("You currently have the following items equipped");
+        for (Item item : mCurrentlyEquipped) {
+
+            System.out.printf("%s -", item.getName());
+        }
     }
 
 
@@ -275,7 +285,7 @@ public class EquippableItems {
 
 
 
-    public int getStr() {
+    static public int getStr() {
         return mStr;
     }
     public int getDex() {
@@ -287,7 +297,7 @@ public class EquippableItems {
     public int getInt() {
         return mInt;
     }
-    public int getHP() {
+    static public int getHP() {
         return mHP;
     }
     public int getMP() {

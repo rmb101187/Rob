@@ -74,8 +74,8 @@ public class Combat  {
         EquippableItems equipItems;
          enemyList = new Enemy().createListA();
          enemy = enemyList.get(randNum.nextInt(enemyList.size()));
-         mCharStrength= character.getStrength();
-         mCharHitpoints= character.getHP();
+         mCharStrength= character.getStrength() + EquippableItems.getStr();
+         mCharHitpoints= character.getHP() + EquippableItems.getHP();
          mEnemyHitpoints= enemy.getHP();
          mEnemyStr= enemy.getStr();
          mCharManaPoints= character.getMP();

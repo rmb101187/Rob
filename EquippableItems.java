@@ -279,11 +279,9 @@ public class EquippableItems {
     public void printEquippedItems() {
         System.out.println("You currently have the following items equipped");
         for (Item item : mCurrentlyEquipped) {
-
             System.out.printf("%s -", item.getName());
-            System.out.println('\n');
-
         }
+        System.out.println('\n');
     }
 
 

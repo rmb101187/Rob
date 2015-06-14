@@ -44,7 +44,7 @@ public class Loot {
 
     public void lootItem() {
         availableItems = Item.createItemList();
-        possessedItems = CharacterInventory.createPlayersItems();
+        possessedItems = CharacterInventory.getPlayersItems();
         rareItems = Item.rareItemList();
         mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
         mRareItem = rareItems.get(randNum.nextInt(rareItems.size()));

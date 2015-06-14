@@ -113,24 +113,27 @@ public class EquippableItems {
     public void itemByCategory() {
 
         createEquippableList();
-        System.out.println("What equipment slot would you like to view \n"); // ask the user what category of equipment
+        System.out.println("What equipment slot would you like to view \n" +
+                "The options are head, torso, feet, or weapon"); // ask the user what category of equipment
         String equipmentSlot = CharBuilder.sc.nextLine();
         if (equipmentSlot.equalsIgnoreCase("head")) {
             showList("head");
             equipItem();
-        }
-        else if (equipmentSlot.equalsIgnoreCase("weapon")) {
+        } else if (equipmentSlot.equalsIgnoreCase("weapon")) {
             showList("weapon");
             equipItem();
-        }
-        else if (equipmentSlot.equalsIgnoreCase("torso")) {
+        } else if (equipmentSlot.equalsIgnoreCase("torso")) {
             showList("torso");
             equipItem();
-        }
-        else if (equipmentSlot.equalsIgnoreCase("feet")) {
+        } else if (equipmentSlot.equalsIgnoreCase("feet")) {
             showList("feet");
             equipItem(); // equip the item and add it to list of equipped items
+        } else {
+            System.out.println("sorry, please choose head, weapon, torso, or feet");
+            setStats();
         }
+
+
 
     }
 
@@ -173,10 +176,10 @@ public class EquippableItems {
                         validContinueToEquipResponse.contains(continueToEquip.toLowerCase());
                 do {
                     if (continueToEquip.equalsIgnoreCase("yes")) {
-                        equipItem();
+                        setStats();
                     }
                     else if (continueToEquip.equalsIgnoreCase("no")) {
-                        setStats();
+                        adjustStats();
                         chap1.playChapter1();
                     }
                     else {
@@ -205,16 +208,18 @@ public class EquippableItems {
 
         boolean isValidDecision =validDecision.contains(validDecision.toLowerCase());
 
-        while (!isValidDecision) {
+        do {
             if (equipAgain.equalsIgnoreCase("yes")) {
                 setStats();
             } else if (equipAgain.equalsIgnoreCase("no")) {
+                adjustStats();
                 chap1.playChapter1();
                 break;
             } else {
                 System.out.println("Sorry, please choose yes or no");
+                setStats();
             }
-        }
+        } while (!isValidDecision);
         return mEquippedItems;
     }
 
@@ -276,6 +281,8 @@ public class EquippableItems {
         for (Item item : mCurrentlyEquipped) {
 
             System.out.printf("%s -", item.getName());
+            System.out.println('\n');
+
         }
     }
 

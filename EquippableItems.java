@@ -10,23 +10,15 @@ import java.util.*;
 public class EquippableItems {
     List<Item> characterItems;
     static private int mStr;
-    private int mDex;
-    private int mCon;
-    private int mInt;
     static private int mHP;
     private int mMP;
-    private int helmStats;
-
     Chapter1 chap1;
     List<Item> mCharacterItems;
     List<Item> mEquippableItems;
     Map<String, String> mCategoryMap;
     Map<String, Item> mEquippedItems;
     List<Item> mCurrentlyEquipped = new ArrayList<>();
-    private boolean headEquipped;
-    private boolean weaponEquipped;
-    private boolean torsoEquipped;
-    private boolean feetEquipped;
+    Map <Item, String> mAlreadyEquipped;
     Item item;
 
 
@@ -119,15 +111,19 @@ public class EquippableItems {
         if (equipmentSlot.equalsIgnoreCase("head")) {
             showList("head");
             equipItem();
+
         } else if (equipmentSlot.equalsIgnoreCase("weapon")) {
             showList("weapon");
             equipItem();
+
         } else if (equipmentSlot.equalsIgnoreCase("torso")) {
             showList("torso");
             equipItem();
+
         } else if (equipmentSlot.equalsIgnoreCase("feet")) {
             showList("feet");
-            equipItem(); // equip the item and add it to list of equipped items
+            equipItem();// equip the item and add it to list of equipped items
+
         } else {
             System.out.println("sorry, please choose head, weapon, torso, or feet");
             setStats();
@@ -252,12 +248,10 @@ public class EquippableItems {
     }
 
     public void setStats() {
-        mEquippableItems = new ArrayList<>();
         mCharacterItems = CharacterInventory.getPlayersItems();
         mCategoryMap = new TreeMap<>();
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
-        mEquippableItems = new ArrayList<>();
         mEquippableItems = new ArrayList<>();
         try {
             if (mCharacterItems.isEmpty()) {
@@ -284,6 +278,10 @@ public class EquippableItems {
         System.out.println('\n');
     }
 
+    /*public boolean categoryAlreadyEquipped() {
+        boolean categoryEquipped =
+    }*/
+
 
 
 
@@ -292,15 +290,6 @@ public class EquippableItems {
 
     static public int getStr() {
         return mStr;
-    }
-    public int getDex() {
-        return mDex;
-    }
-    public int getCon() {
-        return mCon;
-    }
-    public int getInt() {
-        return mInt;
     }
     static public int getHP() {
         return mHP;

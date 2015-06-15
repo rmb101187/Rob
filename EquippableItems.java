@@ -18,7 +18,7 @@ public class EquippableItems {
     Map<String, String> mCategoryMap;
     Map<String, Item> mEquippedItems;
     List<Item> mCurrentlyEquipped = new ArrayList<>();
-    Map <Item, String> mAlreadyEquipped;
+    Map <String, Item> mAlreadyEquipped;
     Item item;
 
 
@@ -154,7 +154,7 @@ public class EquippableItems {
                 try {
 
                     item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
-
+                    previousEquippedCheck();
                     mEquippedItems.put(item.getName(), item);
                     mCurrentlyEquipped.add(item);
                     Item.equipItem(item);
@@ -254,6 +254,7 @@ public class EquippableItems {
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
         mEquippableItems = new ArrayList<>();
+        mAlreadyEquipped = new HashMap<>();
         try {
             if (mCharacterItems.isEmpty()) {
                 System.out.println("Sorry you have no equippable items");
@@ -265,7 +266,7 @@ public class EquippableItems {
         }
         printEquippedItems();
         itemByCategory();
-        //previousEquippedCheck();
+
         adjustStats();
         Chapter1.playChapter1();
 
@@ -285,19 +286,19 @@ public class EquippableItems {
             System.out.println('\n');
         }
     }
-    public Map<Item, String> characterAlreadyEquipped() {
+    public Map<String, Item> characterAlreadyEquipped() {
         for (Item item : mCurrentlyEquipped) {
-            mAlreadyEquipped.put(item, item.getCategory());
+            mAlreadyEquipped.put(item.getCategory(), item);
         }
         return mAlreadyEquipped;
     }
     public boolean categoryAlreadyEquipped() {
-        boolean categoryEquipped = mAlreadyEquipped.containsValue(item.getCategory());
+        boolean categoryEquipped = mAlreadyEquipped.containsKey(item.getCategory());
         return categoryEquipped;
     }
 
     public boolean itemAlreadyEquipped() {
-        boolean itemAlreadyEquipped = mAlreadyEquipped.containsKey(item);
+        boolean itemAlreadyEquipped = mAlreadyEquipped.containsValue(item);
         return itemAlreadyEquipped;
     }
 
@@ -312,10 +313,11 @@ public class EquippableItems {
             String unequipItem = CharBuilder.sc.nextLine();
             String validUnequipOptions= "yes no";
             boolean validUnequipAnswer = unequipItem.contains(validUnequipOptions);
+            Item unequippedItem = mAlreadyEquipped.get(item.getCategory());
             do {
                 if (unequipItem.equalsIgnoreCase("yes"));
-                Item.unequipItem(item);
-                mCurrentlyEquipped.remove(item);
+                Item.unequipItem(unequippedItem);
+                mCurrentlyEquipped.remove(unequippedItem);
             }while (!validUnequipAnswer);
 
         }

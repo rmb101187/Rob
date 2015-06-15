@@ -54,45 +54,24 @@ public class EquippableItems {
         for (Item item : mEquippableItems) {
             if (itemCategory.equalsIgnoreCase("head") && item.getCategory().equalsIgnoreCase("head")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                if (item.isEquipped()) {
-                    System.out.printf("<E>%s - ", item.getName());
-                }
-                else if (!item.isEquipped()) {
-                    System.out.printf("%s - ", item.getName());
-                }
+                printEquippedItems();
 
             }
             else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-
-                if (item.isEquipped()) {
-                    System.out.printf("<E>%s - ", item.getName());
-                }
-                else if (!item.isEquipped()) {
-                    System.out.printf("%s - ", item.getName());
-                }
+                printEquippedItems();
 
             }
             else if (itemCategory.equalsIgnoreCase("torso") && item.getCategory().equalsIgnoreCase("torso")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
 
-                if (item.isEquipped()) {
-                    System.out.printf("<E>%s - ", item.getName());
-                }
-                else if (!item.isEquipped()) {
-                    System.out.printf("%s - ", item.getName());
-                }
+                printEquippedItems();
 
             }
             else if (itemCategory.equalsIgnoreCase("feet") && item.getCategory().equalsIgnoreCase("feet")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
 
-                if (item.isEquipped()) {
-                    System.out.printf("<E>%s - ", item.getName());
-                }
-                else if (!item.isEquipped()) {
-                    System.out.printf("%s - ", item.getName());
-                }
+                printEquippedItems();
 
             }
 
@@ -271,16 +250,24 @@ public class EquippableItems {
     }
 
     public void printEquippedItems() {
-        System.out.println("You currently have the following items equipped");
-        for (Item item : mCurrentlyEquipped) {
-            System.out.printf("%s -", item.getName());
+
+        if (mEquippedItems.isEmpty()) {
+            System.out.println("You currently have no items equipped");
         }
-        System.out.println('\n');
+        else {
+            System.out.println("You currently have the following items equipped");
+            for (Item item : mCurrentlyEquipped) {
+                System.out.printf("%s -", item.getName());
+            }
+            System.out.println('\n');
+        }
     }
 
     /*public boolean categoryAlreadyEquipped() {
         boolean categoryEquipped =
     }*/
+
+
 
 
 

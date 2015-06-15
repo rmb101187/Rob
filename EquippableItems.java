@@ -122,9 +122,13 @@ public class EquippableItems {
         } else if (equipmentSlot.equalsIgnoreCase("feet")) {
             showList("feet");
             equipItem();// equip the item and add it to list of equipped items
+        } else if (equipmentSlot.equalsIgnoreCase("exit")) {
+            System.out.println("You decide to not equip an item afterall, and leave the shop");
+            adjustStats();
+            Chapter1.playChapter1();
 
         } else {
-            System.out.println("sorry, please choose head, weapon, torso, or feet");
+            System.out.println("sorry, please choose head, weapon, torso, or feet exit to enter town again");
             setStats();
         }
 

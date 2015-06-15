@@ -322,9 +322,20 @@ public class EquippableItems {
             boolean validUnequipAnswer = unequipItem.contains(validUnequipOptions);
             Item unequippedItem = mAlreadyEquipped.get(item.getCategory());
             do {
-                if (unequipItem.equalsIgnoreCase("yes"));
-                Item.unequipItem(unequippedItem);
-                mCurrentlyEquipped.remove(unequippedItem);
+                if (unequipItem.equalsIgnoreCase("yes")) {
+                    Item.unequipItem(unequippedItem);
+                    mCurrentlyEquipped.remove(unequippedItem);
+                    System.out.printf("Very, well you unequip the %s", unequippedItem.getName());
+                }
+                else if (unequipItem.equalsIgnoreCase("no")) {
+                    System.out.println("Very well, you leave the previous item equipped");
+                    setStats();
+                }
+                else {
+                    System.out.println("Sorry please try again and answer only yes or no");
+                    setStats();
+                }
+
             }while (!validUnequipAnswer);
 
         }

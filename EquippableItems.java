@@ -254,7 +254,7 @@ public class EquippableItems {
         mEquippableItems = createEquippableList();
         mEquippedItems = new HashMap<>();
         mEquippableItems = new ArrayList<>();
-        mAlreadyEquipped = new HashMap<>();
+        mAlreadyEquipped = characterAlreadyEquipped();
         try {
             if (mCharacterItems.isEmpty()) {
                 System.out.println("Sorry you have no equippable items");
@@ -287,6 +287,9 @@ public class EquippableItems {
         }
     }
     public Map<String, Item> characterAlreadyEquipped() {
+        if (mAlreadyEquipped == null) {
+            mAlreadyEquipped = new HashMap<>();
+        }
         for (Item item : mCurrentlyEquipped) {
             mAlreadyEquipped.put(item.getCategory(), item);
         }

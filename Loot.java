@@ -49,7 +49,6 @@ public class Loot {
         mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
         mRareItem = rareItems.get(randNum.nextInt(rareItems.size()));
         CharacterInventory.addPossessedItems(mFoundItem);
-        CharacterInventory.addPossessedItems(mFoundItem);
 
 
         rareItemChance = randNum.nextInt(100);

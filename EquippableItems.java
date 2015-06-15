@@ -154,7 +154,7 @@ public class EquippableItems {
                 try {
 
                     item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
-                    //previousEquippedCheck();
+
                     mEquippedItems.put(item.getName(), item);
                     mCurrentlyEquipped.add(item);
                     Item.equipItem(item);
@@ -265,6 +265,7 @@ public class EquippableItems {
         }
         printEquippedItems();
         itemByCategory();
+        //previousEquippedCheck();
         adjustStats();
         Chapter1.playChapter1();
 
@@ -300,7 +301,7 @@ public class EquippableItems {
         return itemAlreadyEquipped;
     }
 
-    /*public void previousEquippedCheck() {
+    public void previousEquippedCheck() {
         if (itemAlreadyEquipped()) {
             System.out.println("You already have this item equipped \n");
             setStats();
@@ -318,7 +319,7 @@ public class EquippableItems {
             }while (!validUnequipAnswer);
 
         }
-    }*/
+    }
 
     static public int getStr() {
         return mStr;

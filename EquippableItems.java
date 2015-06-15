@@ -54,24 +54,44 @@ public class EquippableItems {
         for (Item item : mEquippableItems) {
             if (itemCategory.equalsIgnoreCase("head") && item.getCategory().equalsIgnoreCase("head")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                printEquippedItems();
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
-            }
-            else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
+            } else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                printEquippedItems();
+
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
             else if (itemCategory.equalsIgnoreCase("torso") && item.getCategory().equalsIgnoreCase("torso")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
 
-                printEquippedItems();
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
             else if (itemCategory.equalsIgnoreCase("feet") && item.getCategory().equalsIgnoreCase("feet")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
 
-                printEquippedItems();
+                if (item.isEquipped()) {
+                    System.out.printf("<E>%s - ", item.getName());
+                }
+                else if (!item.isEquipped()) {
+                    System.out.printf("%s - ", item.getName());
+                }
 
             }
 
@@ -132,7 +152,9 @@ public class EquippableItems {
                 String equipChoice = CharBuilder.sc.nextLine();
                 String equipChoiceLower = equipChoice.toLowerCase();
                 try {
+
                     item = mEquippedItems.get(equipChoiceLower); // pulls the object from the map to retrieve the item
+                    //previousEquippedCheck();
                     mEquippedItems.put(item.getName(), item);
                     mCurrentlyEquipped.add(item);
                     Item.equipItem(item);
@@ -262,18 +284,41 @@ public class EquippableItems {
             System.out.println('\n');
         }
     }
+    public Map<Item, String> characterAlreadyEquipped() {
+        for (Item item : mCurrentlyEquipped) {
+            mAlreadyEquipped.put(item, item.getCategory());
+        }
+        return mAlreadyEquipped;
+    }
+    public boolean categoryAlreadyEquipped() {
+        boolean categoryEquipped = mAlreadyEquipped.containsValue(item.getCategory());
+        return categoryEquipped;
+    }
 
-    /*public boolean categoryAlreadyEquipped() {
-        boolean categoryEquipped =
+    public boolean itemAlreadyEquipped() {
+        boolean itemAlreadyEquipped = mAlreadyEquipped.containsKey(item);
+        return itemAlreadyEquipped;
+    }
+
+    /*public void previousEquippedCheck() {
+        if (itemAlreadyEquipped()) {
+            System.out.println("You already have this item equipped \n");
+            setStats();
+        }
+        else if (categoryAlreadyEquipped()) {
+            System.out.printf("You already have the item %s equipped in this slot \n", item.getName());
+            System.out.println("Do you want to unequip it for another item from this slot? \n");
+            String unequipItem = CharBuilder.sc.nextLine();
+            String validUnequipOptions= "yes no";
+            boolean validUnequipAnswer = unequipItem.contains(validUnequipOptions);
+            do {
+                if (unequipItem.equalsIgnoreCase("yes"));
+                Item.unequipItem(item);
+                mCurrentlyEquipped.remove(item);
+            }while (!validUnequipAnswer);
+
+        }
     }*/
-
-
-
-
-
-
-
-
 
     static public int getStr() {
         return mStr;

@@ -48,7 +48,9 @@ public class Loot {
         rareItems = Item.rareItemList();
         mFoundItem = availableItems.get(randNum.nextInt(availableItems.size()));
         mRareItem = rareItems.get(randNum.nextInt(rareItems.size()));
-        possessedItems.add(mFoundItem);
+        CharacterInventory.addPossessedItems(mFoundItem);
+        CharacterInventory.addPossessedItems(mFoundItem);
+
         rareItemChance = randNum.nextInt(100);
         System.out.printf("Congratulations you found a %s \n", mFoundItem.getName());
         if (rareItemChance > 75) {

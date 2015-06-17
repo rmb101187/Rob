@@ -71,7 +71,7 @@ public class Combat  {
     }
     public void combat() {
 
-        EquippableItems equipItems;
+
          enemyList = new Enemy().createListA();
          enemy = enemyList.get(randNum.nextInt(enemyList.size()));
          mCharStrength= character.getStrength() + EquippableItems.getStr();

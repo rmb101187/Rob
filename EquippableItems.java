@@ -312,7 +312,7 @@ public class EquippableItems {
     public void previousEquippedCheck() {
         if (itemAlreadyEquipped()) {
             System.out.println("You already have this item equipped \n");
-            setStats();
+            setStats(); // simple enough if the map of already equipped items contains the item it can't be equipped
         }
         else if (categoryAlreadyEquipped()) {
             System.out.printf("You already have the item %s equipped in this slot \n", item.getName());
@@ -326,6 +326,9 @@ public class EquippableItems {
                     Item.unequipItem(unequippedItem);
                     mCurrentlyEquipped.remove(unequippedItem);
                     System.out.printf("Very, well you unequip the %s", unequippedItem.getName());
+                    /*
+                    unequip the first item that the play has equipped under the category, and then this will equip the
+                    new item */
                 }
                 else if (unequipItem.equalsIgnoreCase("no")) {
                     System.out.println("Very well, you leave the previous item equipped");

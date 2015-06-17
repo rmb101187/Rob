@@ -12,7 +12,7 @@ public class CharacterInventory {
     static public List<Item> mCharacterInventory;
     static public List<Item> possessedItems;
     private Item mItem;
-    static private double mGoldCount = 1000;
+    static private double mGoldCount;
     static private Map<String, Item> characterSellableItems;
 
 
@@ -20,7 +20,7 @@ public class CharacterInventory {
     Item item;
 
     public CharacterInventory() {
-        mGoldCount = 1000;
+        mGoldCount = getGold();
 
     }
 

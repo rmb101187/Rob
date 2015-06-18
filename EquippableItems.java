@@ -54,20 +54,20 @@ public class EquippableItems {
         for (Item item : mEquippableItems) {
             if (itemCategory.equalsIgnoreCase("head") && item.getCategory().equalsIgnoreCase("head")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
-                if (item.isEquipped()) {
+                if (mCurrentlyEquipped.contains(item)) {
                     System.out.printf("<E>%s - ", item.getName());
                 }
-                else if (!item.isEquipped()) {
+                else if (!mCurrentlyEquipped.contains(item)) {
                     System.out.printf("%s - ", item.getName());
                 }
 
             } else if (itemCategory.equalsIgnoreCase("weapon") && item.getCategory().equalsIgnoreCase("weapon")) {
                 mCategoryMap.put(item.getCategory(), item.getName());
 
-                if (item.isEquipped()) {
+                if (mCurrentlyEquipped.contains(item)) {
                     System.out.printf("<E>%s - ", item.getName());
                 }
-                else if (!item.isEquipped()) {
+                else if (!mCurrentlyEquipped.contains(item)) {
                     System.out.printf("%s - ", item.getName());
                 }
 
